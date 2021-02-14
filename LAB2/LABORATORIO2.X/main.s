@@ -15,7 +15,7 @@ PROCESSOR 16F887
 ;---------------------CONFIGURATION WORDS --------------------------------------
    
 ; CONFIGURATION WORD 1
-  CONFIG  FOSC = XT		; Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
+  CONFIG  FOSC = INTRC_NOCLKOUT		; Oscillator Selection bits (INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
   CONFIG  WDTE = OFF            ; Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
   CONFIG  PWRTE = OFF            ; Power-up Timer Enable bit (PWRT enabled)
   CONFIG  MCLRE = OFF           ; RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)

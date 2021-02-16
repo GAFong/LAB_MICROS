@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$build/default/production/main.o
+$build/default/debug/main.o
 resVect CODE 0 0 0 3 2
 code CODE 0 0 0 139 2
 udata_bank0 BANK0 1 20 20 2 1
@@ -51,7 +51,7 @@ STRING 139-1FFF 2
 # are in ascending order of addresses.
 # All other numeric values are in decimal.
 %LINETAB
-$build/default/production/main.o
+$build/default/debug/main.o
 0 resVect CODE >41:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB3\LABORATORIO3.X\main.s
 0 resVect CODE >42:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB3\LABORATORIO3.X\main.s
 0 resVect CODE >43:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB3\LABORATORIO3.X\main.s

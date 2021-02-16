@@ -34,7 +34,7 @@ __Ludata_bank3 0 0 ABS 0
 %segments
 udata_bank0 20 21 BANK0 20 1
 %locals
-build/default/production/main.o
+build/default/debug/main.o
 main.s
 47 0 0 CODE 0
 50 100 0 CODE 0

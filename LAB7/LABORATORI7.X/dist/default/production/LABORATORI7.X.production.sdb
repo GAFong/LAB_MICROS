@@ -1,0 +1,115 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F887 ]
+[d frameptr 0 ]
+"10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"42 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB7\LABORATORI7.X\main.c
+[v _isr isr `II(v  1 e 1 0 ]
+"78
+[v _main main `(v  1 e 1 0 ]
+"87
+[v _setup setup `(v  1 e 1 0 ]
+"59 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
+"166
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"290
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"352
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
+"414
+[v _PORTE PORTE `VEuc  1 e 1 @9 ]
+[s S22 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INTF 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INTE 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+"482
+[s S31 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 . 1 0 :2:3 
+`uc 1 TMR0IE 1 0 :1:5 
+]
+[u S36 . 1 `S22 1 . 1 0 `S31 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES36  1 e 1 @11 ]
+"1346
+[v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
+"1416
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"1478
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1540
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"1602
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"1664
+[v _TRISE TRISE `VEuc  1 e 1 @137 ]
+[s S74 . 1 `uc 1 SCS 1 0 :1:0 
+`uc 1 LTS 1 0 :1:1 
+`uc 1 HTS 1 0 :1:2 
+`uc 1 OSTS 1 0 :1:3 
+`uc 1 IRCF 1 0 :3:4 
+]
+"1882
+[s S80 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 IRCF0 1 0 :1:4 
+`uc 1 IRCF1 1 0 :1:5 
+`uc 1 IRCF2 1 0 :1:6 
+]
+[u S85 . 1 `S74 1 . 1 0 `S80 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES85  1 e 1 @143 ]
+"3387
+[v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
+"3449
+[v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
+"3932
+[v _IOCB0 IOCB0 `VEb  1 e 0 @1200 ]
+"3935
+[v _IOCB1 IOCB1 `VEb  1 e 0 @1201 ]
+"4103
+[v _RB0 RB0 `VEb  1 e 0 @48 ]
+"4106
+[v _RB1 RB1 `VEb  1 e 0 @49 ]
+"4130
+[v _RBIF RBIF `VEb  1 e 0 @88 ]
+"4322
+[v _T0IF T0IF `VEb  1 e 0 @90 ]
+"4604
+[v _WPUB0 WPUB0 `VEb  1 e 0 @1192 ]
+"4607
+[v _WPUB1 WPUB1 `VEb  1 e 0 @1193 ]
+"33 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB7\LABORATORI7.X\main.c
+[v _contador1 contador1 `i  1 e 2 0 ]
+"34
+[v _contador2 contador2 `i  1 e 2 0 ]
+"35
+[v _flag1 flag1 `i  1 e 2 0 ]
+"36
+[v _flag2 flag2 `i  1 e 2 0 ]
+"78
+[v _main main `(v  1 e 1 0 ]
+{
+"85
+} 0
+"87
+[v _setup setup `(v  1 e 1 0 ]
+{
+"125
+} 0
+"42
+[v _isr isr `II(v  1 e 1 0 ]
+{
+"76
+} 0

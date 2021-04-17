@@ -3,7 +3,7 @@
  * Author: GABRIEL ALEXANDER FONG PENAGOS
  * LED PORTA & D, 2 PUSH EN PORTB, DISPLAY PORTC, TRANSISTORES PORTE
  * Created on April 12, 2021, 5:57 PM
- * Ultima modificación 13/04/2021
+ * Ultima modificación 17/04/2021
  */
 
 #include <xc.h>
@@ -32,18 +32,31 @@
 //------------------------------VARIABLES---------------------------------------
 int contador1 = 0;
 int contador2 = 0; 
+int centenas = 0;
+int decenas = 0;
+int unidades = 0; 
 int flag1;
 int flag2;
+int select = 1;
+//------------------------------TABLA-------------------------------------------
+int digitos [10] = {
+0B00111111, 0B00000110, 0B01011011, 0B01001111, 0B01100110, 0B01101101,
+0B01111101, 0B00000111, 0B01111111, 0B01100111};
 
 //-----------------------------PROTOTIPOS---------------------------------------
 void setup (void);
+void centena (int numero, int *c);
+void decena (int numero, int * d, int * u);
+void display(int c, int d,int u);
+
 
 //---------------------------INTERRUPCION--------------------------------------
 void __interrupt()isr(void){
-    di();
+    di();                   //PUSH
     if  (T0IF == 1){
         contador1++;        //INCREMENTAMOS LA VARIABLE
-        TMR0 = _tmr0_value;
+        TMR0 = _tmr0_value; //VALOR
+        display(centenas,decenas,unidades);
         INTCONbits.T0IF = 0;            //LIMPIO LA BANDERA DE T0IF
     }
     if (RBIF == 1){
@@ -53,34 +66,33 @@ void __interrupt()isr(void){
         }
         else{
             if (flag1 == 1) {
-                contador2++;            //INCREMENTAMOS LA VARIABLE
+                PORTD++;            //INCREMENTAMOS LA VARIABLE
                 flag1 = 0;
             }
         }
            
-           
-    
         if (RB1 == 0){
             flag2 = 1;
         }
         else {
             if(flag2 ==1){
-                contador2--;             //DECREMNTAMOS LA VARIABLE
+                PORTD--;             //DECREMNTAMOS LA VARIABLE
                 flag2 = 0;
             }
         }
-  
-     INTCONbits.RBIF = 0;    
+     INTCONbits.RBIF = 0;           //LIMPIAMOS LA BANDERA DEL TMR0
     }
-    ei();
+    ei();                           //POP
 }
 
 void main (void){
-    setup();
+    setup();                        //FUNCION DE SETUP
     
     while(1){
-        PORTA = contador1;
-        PORTD = contador2;
+        PORTA = contador1;          //CARGAMOS EL VALOR DE LA VARIABLE AL PORTA
+        contador2 = PORTD;          //CARGAMOS EL VALOR DEL PORTD A LA VARIABLE
+        centena(contador2, &centenas);//FUNCION DE CENTENAS
+        decena (contador2, &decenas, &unidades); //FUNCION DE DECENAS Y UNIDADES
     }
 }
 //---------------------------CONFIGURACION--------------------------------------
@@ -122,4 +134,53 @@ void setup(void){
     INTCONbits.T0IF = 0;        //LIMPIAMOS LA BANDERA DEL TMR0
     INTCONbits.RBIE = 1;        //HABILITAMOS LAS INTERRUPCIONES IOC
     INTCONbits.RBIF = 0;        //LIMPIAMOS LA BANDER DE IOC
+}
+
+void centena(int numero, int *c){
+    *c = numero/100;            //DIVIDIMOS ENTRE 100 PARA OBTENER LAS CENTENAS
+}
+ 
+void decena (int numero, int * d, int * u){
+    if(numero >= 100){
+        if(numero >= 200){
+            numero = numero - 200;//RESTAMOS 200
+            *d = numero/10;     /*DIVIDIMOS EL NUMERO DENTRO DE 10, PARA OBTENER
+                                  LA CANTIDAD DE DECENAS*/
+            *u = numero % 10;   /*UTILIZAMOS EL RESIDUO PARA OBTENER LAS 
+                                 UNIDADES*/
+        }
+        else {
+            numero = numero - 100;//RESTAMOS 100
+            *d = numero/10;     /*DIVIDIMOS EL NUMERO DENTRO DE 10, PARA OBTENER
+                                  LA CANTIDAD DE DECENAS*/
+            *u = numero % 10;   /*UTILIZAMOS EL RESIDUO PARA OBTENER LAS 
+                                 UNIDADES*/
+        }
+    }
+    else {
+        *d = numero / 10;       /*DIVIDIMOS EL NUMERO DENTRO DE 10, PARA OBTENER
+                                  LA CANTIDAD DE DECENAS*/ 
+        *u = numero % 10;       /*UTILIZAMOS EL RESIDUO PARA OBTENER LAS 
+                                 UNIDADES*/
+    }
+}
+void display(int c, int d,int u){
+    PORTE = 0X00;
+    switch (select){            //CASOS PARA LA MULTIPLEXACION 
+        case 1:                 //CARGAMOS LOS VALORES DE UNIDADES AL DISPLAY
+            PORTC = digitos[u];
+            PORTE = 0B00000001;
+            select = 2;
+            break;
+        case 2:                 //CARGAMOS LOS VALORES DE DECENAS AL DISPLAY
+            PORTC = digitos[d];
+            PORTE = 0B00000010;
+            select = 3;
+            break;
+        case 3:                 //CARGAMOS LOS VALORES DE CENTENAS AL DISPLAY
+            PORTC = digitos[c];
+            PORTE = 0B00000100;
+            select = 1;
+            break;
+    }
 }

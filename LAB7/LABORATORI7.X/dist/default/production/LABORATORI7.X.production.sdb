@@ -3,6 +3,10 @@
 [d edition pro ]
 [d chip 16F887 ]
 [d frameptr 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
 "10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8_16.c
@@ -11,12 +15,18 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"42 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB7\LABORATORI7.X\main.c
+"54 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB7\LABORATORI7.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
-"78
+"88
 [v _main main `(v  1 e 1 0 ]
-"87
+"99
 [v _setup setup `(v  1 e 1 0 ]
+"139
+[v _centena centena `(v  1 e 1 0 ]
+"143
+[v _decena decena `(v  1 e 1 0 ]
+"167
+[v _display display `(v  1 e 1 0 ]
 "59 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
 "166
@@ -56,20 +66,20 @@
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S74 . 1 `uc 1 SCS 1 0 :1:0 
+[s S94 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S80 . 1 `uc 1 . 1 0 :4:0 
+[s S100 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S85 . 1 `S74 1 . 1 0 `S80 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES85  1 e 1 @143 ]
+[u S105 . 1 `S94 1 . 1 0 `S100 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES105  1 e 1 @143 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
@@ -95,21 +105,78 @@
 "34
 [v _contador2 contador2 `i  1 e 2 0 ]
 "35
-[v _flag1 flag1 `i  1 e 2 0 ]
+[v _centenas centenas `i  1 e 2 0 ]
 "36
+[v _decenas decenas `i  1 e 2 0 ]
+"37
+[v _unidades unidades `i  1 e 2 0 ]
+"38
+[v _flag1 flag1 `i  1 e 2 0 ]
+"39
 [v _flag2 flag2 `i  1 e 2 0 ]
-"78
+"40
+[v _select select `i  1 e 2 0 ]
+"42
+[v _digitos digitos `[10]i  1 e 20 0 ]
+"88
 [v _main main `(v  1 e 1 0 ]
 {
-"85
+"97
 } 0
-"87
+"99
 [v _setup setup `(v  1 e 1 0 ]
 {
-"125
+"137
 } 0
-"42
+"143
+[v _decena decena `(v  1 e 1 0 ]
+{
+[v decena@numero numero `i  1 p 2 9 ]
+[v decena@d d `*.4i  1 p 1 11 ]
+[v decena@u u `*.4i  1 p 1 12 ]
+"166
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 6 ]
+[v ___awmod@counter counter `uc  1 a 1 5 ]
+"5
+[v ___awmod@divisor divisor `i  1 p 2 0 ]
+[v ___awmod@dividend dividend `i  1 p 2 2 ]
+"34
+} 0
+"139 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB7\LABORATORI7.X\main.c
+[v _centena centena `(v  1 e 1 0 ]
+{
+[v centena@numero numero `i  1 p 2 9 ]
+[v centena@c c `*.1i  1 p 1 11 ]
+"141
+} 0
+"5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 7 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 6 ]
+[v ___awdiv@counter counter `uc  1 a 1 5 ]
+"5
+[v ___awdiv@divisor divisor `i  1 p 2 0 ]
+[v ___awdiv@dividend dividend `i  1 p 2 2 ]
+"41
+} 0
+"54 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB7\LABORATORI7.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"76
+"86
+} 0
+"167
+[v _display display `(v  1 e 1 0 ]
+{
+[v display@c c `i  1 p 2 0 ]
+[v display@d d `i  1 p 2 2 ]
+[v display@u u `i  1 p 2 4 ]
+"186
 } 0

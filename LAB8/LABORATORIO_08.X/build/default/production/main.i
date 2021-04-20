@@ -2702,7 +2702,7 @@ void main (void){
               break;
         }
         _delay((unsigned long)((50)*(4000000/4000000.0)));
-         ADCON0bits.GO = 1;
+        ADCON0bits.GO = 1;
         centena(VALOR, &centenas);
         decena (VALOR, &decenas, &unidades);
     }

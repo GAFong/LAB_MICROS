@@ -2,8 +2,8 @@
  * File:   LABORATORIO 08
  * Author: GABRIEL ALEXANDER FONG PENAGOS
  * LED PORTD, 2 POT EN PORTB, DISPLAY PORTC, TRANSISTORES PORTE
- * Created on April 12, 2021, 5:57 PM
- * Ultima modificación 18/04/2021
+ * Created on April 18, 2021, 5:57 PM
+ * Ultima modificación 20/04/2021
  */
 
 #include <xc.h>
@@ -71,14 +71,14 @@ void main (void){
     while(1){
         switch(ADCON0bits.CHS){
             case 0:
-              ADCON0bits.CHS = 12;   //COLOCAMOS EL CANAL 8
+              ADCON0bits.CHS = 12;   //COLOCAMOS EL CANAL 12 PORTB0
               break;
             case 12:
-              ADCON0bits.CHS = 0;   //COLOCAMOS EL CANAL 0
+              ADCON0bits.CHS = 0;   //COLOCAMOS EL CANAL 0  PORTA0
               break;
         }
         __delay_us(50);
-         ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC
+        ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC
         centena(VALOR, &centenas);//FUNCION DE CENTENAS
         decena (VALOR, &decenas, &unidades); //FUNCION DE DECENAS Y UNIDADES
     }

@@ -30,7 +30,7 @@ idataBANK0 CODE 0 2AF 2AF 16 2
 dataBANK0 BANK0 1 20 20 16 1
 bssCOMMON COMMON 1 7C 7C 2 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\DELL\AppData\Local\Temp\sivo.o
+$C:\Users\DELL\AppData\Local\Temp\sjms.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 E E 3 2
 config CONFIG 4 2007 2007 2 2
@@ -79,29 +79,29 @@ STRING 2D8-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\LABORATORIO_08.X.production.o
-11 cinit CODE >528:C:\Users\DELL\AppData\Local\Temp\sivo.s
-11 cinit CODE >531:C:\Users\DELL\AppData\Local\Temp\sivo.s
-11 cinit CODE >596:C:\Users\DELL\AppData\Local\Temp\sivo.s
-12 cinit CODE >597:C:\Users\DELL\AppData\Local\Temp\sivo.s
-13 cinit CODE >598:C:\Users\DELL\AppData\Local\Temp\sivo.s
-14 cinit CODE >599:C:\Users\DELL\AppData\Local\Temp\sivo.s
-15 cinit CODE >600:C:\Users\DELL\AppData\Local\Temp\sivo.s
-16 cinit CODE >601:C:\Users\DELL\AppData\Local\Temp\sivo.s
-17 cinit CODE >602:C:\Users\DELL\AppData\Local\Temp\sivo.s
-18 cinit CODE >603:C:\Users\DELL\AppData\Local\Temp\sivo.s
-19 cinit CODE >604:C:\Users\DELL\AppData\Local\Temp\sivo.s
-1A cinit CODE >605:C:\Users\DELL\AppData\Local\Temp\sivo.s
-1F cinit CODE >609:C:\Users\DELL\AppData\Local\Temp\sivo.s
-20 cinit CODE >610:C:\Users\DELL\AppData\Local\Temp\sivo.s
-21 cinit CODE >611:C:\Users\DELL\AppData\Local\Temp\sivo.s
-22 cinit CODE >612:C:\Users\DELL\AppData\Local\Temp\sivo.s
-23 cinit CODE >613:C:\Users\DELL\AppData\Local\Temp\sivo.s
-24 cinit CODE >614:C:\Users\DELL\AppData\Local\Temp\sivo.s
-25 cinit CODE >617:C:\Users\DELL\AppData\Local\Temp\sivo.s
-26 cinit CODE >618:C:\Users\DELL\AppData\Local\Temp\sivo.s
-27 cinit CODE >624:C:\Users\DELL\AppData\Local\Temp\sivo.s
-27 cinit CODE >626:C:\Users\DELL\AppData\Local\Temp\sivo.s
-28 cinit CODE >627:C:\Users\DELL\AppData\Local\Temp\sivo.s
+11 cinit CODE >528:C:\Users\DELL\AppData\Local\Temp\sjms.s
+11 cinit CODE >531:C:\Users\DELL\AppData\Local\Temp\sjms.s
+11 cinit CODE >596:C:\Users\DELL\AppData\Local\Temp\sjms.s
+12 cinit CODE >597:C:\Users\DELL\AppData\Local\Temp\sjms.s
+13 cinit CODE >598:C:\Users\DELL\AppData\Local\Temp\sjms.s
+14 cinit CODE >599:C:\Users\DELL\AppData\Local\Temp\sjms.s
+15 cinit CODE >600:C:\Users\DELL\AppData\Local\Temp\sjms.s
+16 cinit CODE >601:C:\Users\DELL\AppData\Local\Temp\sjms.s
+17 cinit CODE >602:C:\Users\DELL\AppData\Local\Temp\sjms.s
+18 cinit CODE >603:C:\Users\DELL\AppData\Local\Temp\sjms.s
+19 cinit CODE >604:C:\Users\DELL\AppData\Local\Temp\sjms.s
+1A cinit CODE >605:C:\Users\DELL\AppData\Local\Temp\sjms.s
+1F cinit CODE >609:C:\Users\DELL\AppData\Local\Temp\sjms.s
+20 cinit CODE >610:C:\Users\DELL\AppData\Local\Temp\sjms.s
+21 cinit CODE >611:C:\Users\DELL\AppData\Local\Temp\sjms.s
+22 cinit CODE >612:C:\Users\DELL\AppData\Local\Temp\sjms.s
+23 cinit CODE >613:C:\Users\DELL\AppData\Local\Temp\sjms.s
+24 cinit CODE >614:C:\Users\DELL\AppData\Local\Temp\sjms.s
+25 cinit CODE >617:C:\Users\DELL\AppData\Local\Temp\sjms.s
+26 cinit CODE >618:C:\Users\DELL\AppData\Local\Temp\sjms.s
+27 cinit CODE >624:C:\Users\DELL\AppData\Local\Temp\sjms.s
+27 cinit CODE >626:C:\Users\DELL\AppData\Local\Temp\sjms.s
+28 cinit CODE >627:C:\Users\DELL\AppData\Local\Temp\sjms.s
 4 intentry CODE >49:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB8\LABORATORIO_08.X\main.c
 1D6 text7 CODE >158:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB8\LABORATORIO_08.X\main.c
 1D6 text7 CODE >159:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB8\LABORATORIO_08.X\main.c
@@ -238,23 +238,23 @@ BD text2 CODE >157:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_
 1AF maintext CODE >81:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB8\LABORATORIO_08.X\main.c
 1B2 maintext CODE >82:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB8\LABORATORIO_08.X\main.c
 1BF maintext CODE >83:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB8\LABORATORIO_08.X\main.c
-2C5 inittext CODE >570:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2C5 inittext CODE >571:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2C6 inittext CODE >572:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2C7 inittext CODE >573:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2C8 inittext CODE >574:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2C9 inittext CODE >581:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2C9 inittext CODE >582:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2CE inittext CODE >583:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2CF inittext CODE >584:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2D0 inittext CODE >585:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2D1 inittext CODE >586:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2D2 inittext CODE >587:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2D3 inittext CODE >588:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2D4 inittext CODE >589:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2D5 inittext CODE >590:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2D6 inittext CODE >591:C:\Users\DELL\AppData\Local\Temp\sivo.s
-2D7 inittext CODE >592:C:\Users\DELL\AppData\Local\Temp\sivo.s
+2C5 inittext CODE >570:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2C5 inittext CODE >571:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2C6 inittext CODE >572:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2C7 inittext CODE >573:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2C8 inittext CODE >574:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2C9 inittext CODE >581:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2C9 inittext CODE >582:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2CE inittext CODE >583:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2CF inittext CODE >584:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2D0 inittext CODE >585:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2D1 inittext CODE >586:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2D2 inittext CODE >587:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2D3 inittext CODE >588:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2D4 inittext CODE >589:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2D5 inittext CODE >590:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2D6 inittext CODE >591:C:\Users\DELL\AppData\Local\Temp\sjms.s
+2D7 inittext CODE >592:C:\Users\DELL\AppData\Local\Temp\sjms.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -281,10 +281,10 @@ __Hstrings 0 0 ABS 0 strings -
 _ADIF 66 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
 _T0IF 5A 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
 _TMR0 1 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\sivo.o
+___sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\sjms.o
 _main 304 0 CODE 0 maintext dist/default/production\LABORATORIO_08.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
-start 1C 0 CODE 0 init C:\Users\DELL\AppData\Local\Temp\sivo.o
+start 1C 0 CODE 0 init C:\Users\DELL\AppData\Local\Temp\sjms.o
 __size_of___awdiv 0 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
 __size_of___awmod 0 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
@@ -294,12 +294,12 @@ __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __LidataBANK0 0 0 ABS 0 idataBANK0 -
 __Hpowerup 0 0 CODE 0 powerup -
 ___awmod@sign 3C 0 BANK0 1 cstackBANK0 dist/default/production\LABORATORIO_08.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sivo.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sivo.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sivo.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sivo.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sivo.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sivo.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sjms.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sjms.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sjms.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sjms.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sjms.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sjms.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
@@ -320,14 +320,14 @@ __end_of___awdiv 24E 0 CODE 0 text5 dist/default/production\LABORATORIO_08.X.pro
 __end_of___awmod 304 0 CODE 0 text3 dist/default/production\LABORATORIO_08.X.production.o
 __end_of_decena 17C 0 CODE 0 text2 dist/default/production\LABORATORIO_08.X.production.o
 _OPTION_REG 81 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\sivo.o
-___stacklo 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\sivo.o
+___stackhi 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\sjms.o
+___stacklo 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\sjms.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
 start_initialization 22 0 CODE 0 cinit dist/default/production\LABORATORIO_08.X.production.o
 __size_of_centena 0 0 ABS 0 - dist/default/production\LABORATORIO_08.X.production.o
 __pcstackBANK0 36 0 BANK0 1 cstackBANK0 dist/default/production\LABORATORIO_08.X.production.o
 centena@c 41 0 BANK0 1 cstackBANK0 dist/default/production\LABORATORIO_08.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\sivo.o
+___int_sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\sjms.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -373,7 +373,7 @@ __end_of_centena 55E 0 CODE 0 text4 dist/default/production\LABORATORIO_08.X.pro
 _decena 56 0 CODE 0 text2 dist/default/production\LABORATORIO_08.X.production.o
 __end_of_isr 52C 0 CODE 0 text6 dist/default/production\LABORATORIO_08.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\DELL\AppData\Local\Temp\sivo.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\DELL\AppData\Local\Temp\sjms.o
 __pdataBANK0 20 0 BANK0 1 dataBANK0 dist/default/production\LABORATORIO_08.X.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 ___awmod@counter 3B 0 BANK0 1 cstackBANK0 dist/default/production\LABORATORIO_08.X.production.o

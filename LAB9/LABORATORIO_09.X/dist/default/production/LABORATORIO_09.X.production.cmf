@@ -11,10 +11,6 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\DELL\AppData\Local\Temp\s1oic.o
-reset_vec CODE 0 0 0 3 2
-end_init CODE 0 10 10 3 2
-config CONFIG 4 2007 2007 2 2
 $dist/default/production\LABORATORIO_09.X.production.o
 cinit CODE 0 13 13 A 2
 text1 CODE 0 7A4 7A4 48 2
@@ -30,6 +26,10 @@ cstackBANK0 BANK0 1 20 20 3E 1
 cstackBANK1 BANK1 1 A0 A0 1 1
 intentry CODE 0 4 4 C 2
 bssBANK0 BANK0 1 5E 5E 4 1
+config CONFIG 4 2007 2007 2 2
+$C:\Users\DELL\AppData\Local\Temp\sktc.o
+reset_vec CODE 0 0 0 3 2
+end_init CODE 0 10 10 3 2
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -81,17 +81,17 @@ STRING 1000-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\LABORATORIO_09.X.production.o
-13 cinit CODE >478:C:\Users\DELL\AppData\Local\Temp\s1oic.s
-13 cinit CODE >481:C:\Users\DELL\AppData\Local\Temp\s1oic.s
-13 cinit CODE >495:C:\Users\DELL\AppData\Local\Temp\s1oic.s
-14 cinit CODE >496:C:\Users\DELL\AppData\Local\Temp\s1oic.s
-15 cinit CODE >497:C:\Users\DELL\AppData\Local\Temp\s1oic.s
-16 cinit CODE >498:C:\Users\DELL\AppData\Local\Temp\s1oic.s
-17 cinit CODE >499:C:\Users\DELL\AppData\Local\Temp\s1oic.s
-18 cinit CODE >500:C:\Users\DELL\AppData\Local\Temp\s1oic.s
-19 cinit CODE >506:C:\Users\DELL\AppData\Local\Temp\s1oic.s
-19 cinit CODE >508:C:\Users\DELL\AppData\Local\Temp\s1oic.s
-1A cinit CODE >509:C:\Users\DELL\AppData\Local\Temp\s1oic.s
+13 cinit CODE >478:C:\Users\DELL\AppData\Local\Temp\sktc.s
+13 cinit CODE >481:C:\Users\DELL\AppData\Local\Temp\sktc.s
+13 cinit CODE >495:C:\Users\DELL\AppData\Local\Temp\sktc.s
+14 cinit CODE >496:C:\Users\DELL\AppData\Local\Temp\sktc.s
+15 cinit CODE >497:C:\Users\DELL\AppData\Local\Temp\sktc.s
+16 cinit CODE >498:C:\Users\DELL\AppData\Local\Temp\sktc.s
+17 cinit CODE >499:C:\Users\DELL\AppData\Local\Temp\sktc.s
+18 cinit CODE >500:C:\Users\DELL\AppData\Local\Temp\sktc.s
+19 cinit CODE >506:C:\Users\DELL\AppData\Local\Temp\sktc.s
+19 cinit CODE >508:C:\Users\DELL\AppData\Local\Temp\sktc.s
+1A cinit CODE >509:C:\Users\DELL\AppData\Local\Temp\sktc.s
 4 intentry CODE >37:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB9\LABORATORIO_09.X\main.c
 37E text7 CODE >10:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcadd.c
 37E text7 CODE >21:C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcadd.c
@@ -436,10 +436,10 @@ __Hspace_4 4010 0 ABS 0 - -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Hstrings 0 0 ABS 0 strings -
 _ADIF 66 0 ABS 0 - dist/default/production\LABORATORIO_09.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\s1oic.o
+___sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\sktc.o
 _main FD8 0 CODE 0 maintext dist/default/production\LABORATORIO_09.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\LABORATORIO_09.X.production.o
-start 20 0 CODE 0 init C:\Users\DELL\AppData\Local\Temp\s1oic.o
+start 20 0 CODE 0 init C:\Users\DELL\AppData\Local\Temp\sktc.o
 ___flmul@aexp 32 0 BANK0 1 cstackBANK0 dist/default/production\LABORATORIO_09.X.production.o
 ___flmul@bexp 33 0 BANK0 1 cstackBANK0 dist/default/production\LABORATORIO_09.X.production.o
 ___flmul@prod 34 0 BANK0 1 cstackBANK0 dist/default/production\LABORATORIO_09.X.production.o
@@ -450,12 +450,12 @@ __size_of___flmul 0 0 ABS 0 - dist/default/production\LABORATORIO_09.X.productio
 __size_of___fltol 0 0 ABS 0 - dist/default/production\LABORATORIO_09.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production\LABORATORIO_09.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\s1oic.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\s1oic.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\s1oic.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\s1oic.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\s1oic.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\s1oic.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sktc.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sktc.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sktc.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sktc.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sktc.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sktc.o
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\LABORATORIO_09.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\LABORATORIO_09.X.production.o
 __Hfunctab 0 0 ENTRY 0 functab -
@@ -472,8 +472,8 @@ __end_of___fladd C0C 0 CODE 0 text7 dist/default/production\LABORATORIO_09.X.pro
 __end_of___flmul 6FC 0 CODE 0 text5 dist/default/production\LABORATORIO_09.X.production.o
 __end_of___fltol 2000 0 CODE 0 text4 dist/default/production\LABORATORIO_09.X.production.o
 __Umul8_16@multiplicand 70 0 COMMON 1 cstackCOMMON dist/default/production\LABORATORIO_09.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\s1oic.o
-___stacklo 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\s1oic.o
+___stackhi 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\sktc.o
+___stacklo 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\sktc.o
 ___fladd@a 3E 0 BANK0 1 cstackBANK0 dist/default/production\LABORATORIO_09.X.production.o
 ___fladd@b 3A 0 BANK0 1 cstackBANK0 dist/default/production\LABORATORIO_09.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\LABORATORIO_09.X.production.o
@@ -484,7 +484,7 @@ __pcstackBANK0 20 0 BANK0 1 cstackBANK0 dist/default/production\LABORATORIO_09.X
 __pcstackBANK1 A0 0 BANK1 1 cstackBANK1 dist/default/production\LABORATORIO_09.X.production.o
 _VALOR1 60 0 BANK0 1 bssBANK0 dist/default/production\LABORATORIO_09.X.production.o
 _VALOR2 5E 0 BANK0 1 bssBANK0 dist/default/production\LABORATORIO_09.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\s1oic.o
+___int_sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\sktc.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -535,7 +535,7 @@ saved_w 7E 0 ABS 0 - dist/default/production\LABORATORIO_09.X.production.o
 ___xxtofl DD4 0 CODE 0 text3 dist/default/production\LABORATORIO_09.X.production.o
 __end_of_isr DD4 0 CODE 0 text2 dist/default/production\LABORATORIO_09.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\DELL\AppData\Local\Temp\s1oic.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\DELL\AppData\Local\Temp\sktc.o
 __end_of___xxtofl F48 0 CODE 0 text3 dist/default/production\LABORATORIO_09.X.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 _PIE1bits 8C 0 ABS 0 - dist/default/production\LABORATORIO_09.X.production.o

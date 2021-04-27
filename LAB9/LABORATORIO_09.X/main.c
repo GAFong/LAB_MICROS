@@ -40,13 +40,13 @@ void __interrupt()isr(void){
     if  (ADIF == 1){
         if (ADCON0bits.CHS == 0){       //SI ESTA EL CANAL12 SELECCIONADO
               VALOR1 = ADRESH;
-              CCPR1L = (((0.467*VALOR1)+31));            //VALOR DEL CANAL 12 A VALOR2
+              CCPR1L = (((0.467*VALOR1)+31));            //MAPEO DEL SERVO1
               ADCON0bits.CHS = 12;   //COLOCAMOS EL CANAL 12 PORTB0
               __delay_us(1000);
              ADCON0bits.GO = 1;        }
         else {
               VALOR2 = ADRESH;
-              CCPR2L = ((0.467*VALOR2)+31);            //VALOR DEL CANAL 12 A VALOR2
+              CCPR2L = ((0.467*VALOR2)+31);            //MAPEO DEL SERVO2
               ADCON0bits.CHS = 0;   //COLOCAMOS EL CANAL 12 PORTB0
               __delay_us(1000);
              ADCON0bits.GO = 1; 
@@ -69,11 +69,11 @@ void setup(void){
     ANSEL = 0X01;                   //PINES COMO DIGITALES
     ANSELH = 0B00000001;            //PORTB0 Y PORTB1 COMO ANALOGICOS
     
-    TRISA = 0X01;
-    TRISB = 0X01;
+    TRISA = 0X01;                   //PORTA0 COMO ENTRADA
+    TRISB = 0X01;                   //PORTB0 COMO ENTRADA
     TRISC = 0B00000000;  
     
-    PORTA = 0X00;
+    PORTA = 0X00;                   //LIMPIAMOS LOS PUERTOS
     PORTB = 0X00;
     PORTC = 0X00;
     

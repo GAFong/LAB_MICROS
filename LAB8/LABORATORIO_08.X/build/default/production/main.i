@@ -2678,8 +2678,9 @@ void __attribute__((picinterrupt((""))))isr(void){
         INTCONbits.T0IF = 0;
     }
     if (ADIF == 1){
-        if (ADCON0bits.CHS == 0){
-            PORTD = ADRESH;
+        if (ADCON0bits.CHS == 3){
+            PORTC = ADRESH;
+
         }
         else {
             VALOR = ADRESH;
@@ -2694,11 +2695,11 @@ void main (void){
     ADCON0bits.GO = 1;
     while(1){
         switch(ADCON0bits.CHS){
-            case 0:
+            case 3:
               ADCON0bits.CHS = 12;
               break;
             case 12:
-              ADCON0bits.CHS = 0;
+              ADCON0bits.CHS = 3;
               break;
         }
         _delay((unsigned long)((50)*(4000000/4000000.0)));
@@ -2710,10 +2711,10 @@ void main (void){
 
 void setup(void){
 
-    ANSEL = 0X01;
+    ANSEL = 0B00001000;
     ANSELH = 0X01;
 
-    TRISA = 0X01;
+    TRISA = 0B00001000;
     TRISC = 0X00;
     TRISD = 0X00;
     TRISE = 0X00;
@@ -2737,7 +2738,7 @@ void setup(void){
 
 
     ADCON0bits.ADON = 0X01;
-    ADCON0bits.CHS = 0X00;
+    ADCON0bits.CHS = 3;
     _delay((unsigned long)((100)*(4000000/4000000.0)));
     ADCON0bits.ADCS = 0X01;
     ADCON1bits.ADFM = 0;
@@ -2781,21 +2782,21 @@ void decena (int numero, int * d, int * u){
     }
 }
 void display(int c, int d,int u){
-    PORTE = 0X00;
+
     switch (select){
         case 1:
-            PORTC = digitos[u];
-            PORTE = 0B00000001;
+            PORTD = digitos[u];
+            PORTA = 0B00000001;
             select = 2;
             break;
         case 2:
-            PORTC = digitos[d];
-            PORTE = 0B00000010;
+            PORTD = digitos[d];
+            PORTA = 0B00000010;
             select = 3;
             break;
         case 3:
-            PORTC = digitos[c];
-            PORTE = 0B00000100;
+            PORTD = digitos[c];
+            PORTA = 0B00000100;
             select = 1;
             break;
     }

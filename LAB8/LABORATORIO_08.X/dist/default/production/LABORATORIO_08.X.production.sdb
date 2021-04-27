@@ -17,15 +17,15 @@
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "49 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB8\LABORATORIO_08.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
-"68
+"69
 [v _main main `(v  1 e 1 0 ]
-"87
+"88
 [v _setup setup `(v  1 e 1 0 ]
-"131
+"132
 [v _centena centena `(v  1 e 1 0 ]
-"135
+"136
 [v _decena decena `(v  1 e 1 0 ]
-"159
+"160
 [v _display display `(v  1 e 1 0 ]
 "59 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -158,23 +158,23 @@
 [v _unidades unidades `i  1 e 2 0 ]
 "38
 [v _digitos digitos `[10]i  1 e 20 0 ]
-"68
+"69
 [v _main main `(v  1 e 1 0 ]
 {
-"85
+"86
 } 0
-"87
+"88
 [v _setup setup `(v  1 e 1 0 ]
 {
-"130
+"131
 } 0
-"135
+"136
 [v _decena decena `(v  1 e 1 0 ]
 {
 [v decena@numero numero `i  1 p 2 9 ]
 [v decena@d d `*.4i  1 p 1 11 ]
 [v decena@u u `*.4i  1 p 1 12 ]
-"158
+"159
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
@@ -187,12 +187,12 @@
 [v ___awmod@dividend dividend `i  1 p 2 2 ]
 "34
 } 0
-"131 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB8\LABORATORIO_08.X\main.c
+"132 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB8\LABORATORIO_08.X\main.c
 [v _centena centena `(v  1 e 1 0 ]
 {
 [v centena@numero numero `i  1 p 2 9 ]
 [v centena@c c `*.1i  1 p 1 11 ]
-"133
+"134
 } 0
 "5 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
@@ -210,13 +210,13 @@
 "49 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB8\LABORATORIO_08.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"66
+"67
 } 0
-"159
+"160
 [v _display display `(v  1 e 1 0 ]
 {
 [v display@c c `i  1 p 2 0 ]
 [v display@d d `i  1 p 2 2 ]
 [v display@u u `i  1 p 2 4 ]
-"178
+"179
 } 0

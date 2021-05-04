@@ -2703,8 +2703,15 @@ extern char * ftoa(float f, int * status);
 
 
 
+int bandera = 0;
+int DATO=0;
+int DATO2= 0;
+int OPCION;
+int caracter = 97;
 
-int DATO = 96;
+unsigned char texto[96] = "Que accion desea ejecutar?\r(1)Desplegar cadena de caracteres\r(2)Cambiar PORTA\r(3)Cambiar PORTB\r";
+unsigned char texto2[16]="Ingrese caracter\r";
+
 
 void setup (void);
 
@@ -2713,7 +2720,12 @@ void __attribute__((picinterrupt((""))))isr(void){
     (INTCONbits.GIE = 0);
 
     if (PIR1bits.RCIF){
-        PORTB = RCREG;
+        if (RCREG >= 49){
+            if(RCREG <= 51){
+                OPCION = RCREG;
+
+            }
+        }
     }
 
     (INTCONbits.GIE = 1);
@@ -2723,13 +2735,34 @@ void main (void){
     setup();
 
     while(1) {
-        _delay((unsigned long)((500)*(4000000/4000.0)));
+        caracter++;
+        if (caracter >= 123){
+            caracter = 97;
+        }
+        _delay((unsigned long)((50)*(4000000/4000.0)));
          if (PIR1bits.TXIF){
-             DATO++;
-             if(DATO >= 123){
-                 DATO = 96;
+             if(DATO <= 97){
+                 TXREG = texto[DATO];
+                 DATO++;
              }
-            TXREG = DATO;
+
+        switch(OPCION){
+            case 49:
+                TXREG = caracter;
+                if (caracter == 122){
+                    TXREG = 13;
+                    }
+                break;
+            case 50:
+                if (RCREG != 50){
+                PORTA = RCREG;}
+                break;
+            case 51:
+                if (RCREG != 51){
+                PORTB = RCREG;}
+                break;
+
+        }
     }
 
     }

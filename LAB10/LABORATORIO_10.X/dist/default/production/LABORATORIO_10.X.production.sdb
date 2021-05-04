@@ -11,11 +11,11 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"40 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB10\LABORATORIO_10.X\main.c
+"47 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB10\LABORATORIO_10.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
-"50
+"62
 [v _main main `(v  1 e 1 0 ]
-"66
+"99
 [v _setup setup `(v  1 e 1 0 ]
 "166 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -79,7 +79,7 @@
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1478
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S90 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S91 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -89,8 +89,8 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1557
-[u S99 . 1 `S90 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES99  1 e 1 @135 ]
+[u S100 . 1 `S91 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES100  1 e 1 @135 ]
 [s S138 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
@@ -157,18 +157,24 @@
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
 "35 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\LAB10\LABORATORIO_10.X\main.c
 [v _DATO DATO `i  1 e 2 0 ]
-"50
+"37
+[v _OPCION OPCION `i  1 e 2 0 ]
+"38
+[v _caracter caracter `i  1 e 2 0 ]
+"40
+[v _texto texto `[96]uc  1 e 96 0 ]
+"62
 [v _main main `(v  1 e 1 0 ]
 {
-"64
+"97
 } 0
-"66
+"99
 [v _setup setup `(v  1 e 1 0 ]
 {
-"106
+"139
 } 0
-"40
+"47
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"48
+"60
 } 0

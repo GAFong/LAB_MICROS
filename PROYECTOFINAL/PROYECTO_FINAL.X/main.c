@@ -1,0 +1,168 @@
+/* 
+ * File:   main.c
+ * Author: GABRIEL FONG
+ * PROYECTO FINAL
+ * Created on May 10, 2021, 3:53 PM
+ */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <xc.h>
+/*--------------------------CONFIGURACIONES ----------------------------------*/
+// CONFIG1
+#pragma config FOSC = INTRC_CLKOUT// Oscillator Selection bits (INTOSC oscillator: CLKOUT function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)
+#pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled and can be enabled by SWDTEN bit of the WDTCON register)
+#pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
+#pragma config MCLRE = OFF      // RE3/MCLR pin function select bit (RE3/MCLR pin function is digital input, MCLR internally tied to VDD)
+#pragma config CP = OFF         // Code Protection bit (Program memory code protection is disabled)
+#pragma config CPD = OFF        // Data Code Protection bit (Data memory code protection is disabled)
+#pragma config BOREN = OFF      // Brown Out Reset Selection bits (BOR disabled)
+#pragma config IESO = OFF       // Internal External Switchover bit (Internal/External Switchover mode is disabled)
+#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enabled bit (Fail-Safe Clock Monitor is disabled)
+#pragma config LVP = OFF        // Low Voltage Programming Enable bit (RB3 pin has digital I/O, HV on MCLR must be used for programming)
+
+// CONFIG2
+#pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
+#pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
+
+#define _tmr0_value 231
+#define _XTAL_FREQ 4000000
+
+//------------------------------VARIABLES---------------------------------------
+int PWM3=0;
+int POT0 = 0;
+int POT1 = 0;
+int POT2 = 0;
+int VALORAN = 0;
+//-----------------------------PROTOTIPOS---------------------------------------
+void setup (void);
+
+void ANALOGICOS(int VALORAN);
+
+//---------------------------INTERRUPCION--------------------------------------
+void __interrupt()isr(void){
+    di();                   //PUSH
+    if  (T0IF == 1){
+        TMR0 = _tmr0_value; //VALOR
+        PWM3++;                         //INCREMENTAMOS PWM3
+        
+        if  (PWM3 >= POT0){
+         PORTCbits.RC3 = 0;
+         
+         }
+        else     {
+         PORTCbits.RC3 = 1;
+         }
+         
+        
+        INTCONbits.T0IF = 0;            //LIMPIO LA BANDERA DE T0IF
+    }
+    if (ADIF == 1){
+        VALORAN = ADRESH;               //CARGAMOS ADRESH A VALORAN
+                      //LIMPIAMOS LA BANDERA DEL ADC
+       
+        PIR1bits.ADIF = 0;
+    }
+    
+    ei();                           //POP
+}
+
+void main (void){
+    setup();  
+    while(1){
+        
+        if (PWM3>= 50){
+          PWM3 = 0;}
+        ANALOGICOS(VALORAN);
+        
+    }
+
+}
+void setup(void){
+    //CONFIGURACION DE PUERTOS
+    ANSEL = 0B00000111;               //RA0, RA1, RA2, RA3 ANALOGICO
+    ANSELH = 0X00;
+    
+    TRISA = 0B00000111;          //RA0, RA1, RA2, RA3 INPUT
+    TRISC = 0X00;               //PORTC COMO OUTPUT
+    TRISD = 0X00;               //PORTD COMO OUTPUT
+    TRISE = 0X00;               //PORTE COMO OUTPUT
+    TRISB = 0X00;                
+    
+    PORTA = 0X00;                //LIMPIAMOS EL PUERTOA
+    PORTC = 0X00;                //LIMPIAMOS EL PUERTOC
+    PORTD = 0X00;                //LIMPIAMOS EL PUERTOD
+    PORTE = 0X00;                //LIMPIAMOS EL PUERTOE
+    
+    //CONFIGURACION DEL OSCIALDOR
+    OSCCONbits.IRCF2 = 1;        //OSCILADOR  DE 4 MHZ
+    OSCCONbits.IRCF1 = 1;
+    OSCCONbits.IRCF0 = 0;
+    OSCCONbits.SCS = 1;         //RELOJ INTERNO 
+    
+    //CONFIGURACION DEL TMR0
+    OPTION_REG = 0B11010000;    //RBPU HABILITADO, PSA (0) PRESCALER 1:16
+    TMR0 = _tmr0_value;         //TMR0 A 50 us
+    //CONFIGURACION DEL TMR2
+    T2CON = 0B11111111;         //POSTCALR 1:16, PRESCALER 16
+    PR2 = 187;                  //PERIODO DE 3ms
+    //CONFIGURACION DE CCP1 COMO PWM
+    CCP1CON = 0B00001100;       //CCP1 EN MODO PWM
+    //CONFIGURACION DE CCP2 COMO PWM
+    CCP2CONbits.CCP2M0 = 1;
+    CCP2CONbits.CCP2M1 = 1;
+    CCP2CONbits.CCP2M2 = 1;
+    CCP2CONbits.CCP2M3 = 1;
+    CCP2CONbits.DC2B0 = 0;
+    CCP2CONbits.DC2B1 = 0;
+     //CONFIGURACION DEL ADC
+    ADCON0bits.ADON = 0X01;     //ENCENDEMOS EL MODULO
+    ADCON0bits.CHS = 0;        //ESCOGEMOS EL CANAL 0
+    __delay_us(100);
+    ADCON0bits.ADCS = 0X01;     //ADC CLOCK FOSC/8  
+    ADCON1bits.ADFM = 0;        //JUSTIFICADO A LA IZQUIERDA
+    ADCON1bits.VCFG0 = 0;       //VOLTAGE DE REFERENCIA EN VDD
+    ADCON1bits.VCFG1 = 0;       //VOLTAGE DE REFERENCIA EN VSS
+  /*  //CONFIGURACION DEL IOC
+    WPUB0 = 1 ;
+    WPUB1 = 1 ;
+    IOCB0 = 1 ;
+    IOCB1 = 1 ;
+    */
+    //CONFIGURACION DE INTERRUPCIONES
+    INTCONbits.GIE = 1;         //HABILITAMOS LAS INTERRUPCIONES GLOBALES
+    INTCONbits.T0IE = 1;        //HABILITAMOS LA INTERRUPCION DE TMR0
+    INTCONbits.T0IF = 0;        //LIMPIAMOS LA BANDERA DEL TMR0
+    PIE1bits.ADIE = 1;          //HABILITAMOS LA INTERRUPCION DEL ADC
+    PIR1bits.ADIF = 0;
+   // INTCONbits.RBIE = 1;        //HABILITAMOS LAS INTERRUPCIONES IOC
+   // INTCONbits.RBIF = 0;        //LIMPIAMOS LA BANDER DE IOC
+}
+
+
+void ANALOGICOS(int VALORAN){
+     
+    switch(ADCON0bits.CHS){
+        case 0:
+            POT0 = ((0.1058*VALORAN)+8);    //MAPEO DEL SERVO 3
+            ADCON0bits.CHS = 1;   //COLOCAMOS EL CANAL 1 PORTA1
+           __delay_us(100);
+            ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC*/
+            break;
+            
+        case 1:
+            CCPR1L = (((0.467*VALORAN)+31));
+            ADCON0bits.CHS = 2;   //COLOCAMOS EL CANAL 2 PORTA2
+            __delay_us(100);
+           ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC*/
+            break;
+            
+        case 2:
+            CCPR2L = ((0.467*VALORAN)+31);
+            ADCON0bits.CHS = 0;   //COLOCAMOS EL CANAL 3 PORTA3
+           __delay_us(100);
+             ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC*/
+            break;
+            
+    }
+}

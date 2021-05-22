@@ -36,6 +36,7 @@ PROCESSOR 16F887
     CONT: DS 1			;CONTEO DE 1 BYTE
     TABLA: DS 1			;TABLA DE 1 BYTE
 
+
   PSECT resVect, class=CODE, abs, delta=2
 
 ;-------------------------VECTOR RESET ----------------------------------------

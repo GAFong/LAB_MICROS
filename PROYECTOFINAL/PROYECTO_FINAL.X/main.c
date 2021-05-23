@@ -27,41 +27,41 @@
 
 #define _tmr0_value 231
 #define _XTAL_FREQ 4000000
+#define SERVO1 0
+#define SERVO2 1
+#define SERVO3 2
 
 //------------------------------VARIABLES---------------------------------------
 int PWM3=0;
-int POT0 = 0;
-int POT1 = 0;
-int POT2 = 0;
+unsigned int POT0 = 0;
+unsigned int POT1 = 0;
+unsigned int POT2 = 0;
 int VALORAN = 0;
+int RB0_FLAG = 1;
 //-----------------------------PROTOTIPOS---------------------------------------
 void setup (void);
-
+void EEPROM_W(unsigned int dato, int add);
+unsigned int EEPROM_R(unsigned int add);
 void ANALOGICOS(int VALORAN);
 
 //---------------------------INTERRUPCION--------------------------------------
 void __interrupt()isr(void){
     di();                   //PUSH
     if  (T0IF == 1){
-        TMR0 = _tmr0_value; //VALOR
+        TMR0 = _tmr0_value;             //VALOR DE REINICIO
         PWM3++;                         //INCREMENTAMOS PWM3
-        
-        if  (PWM3 >= POT0){
+        //SEÑAL DE PWM3 COMPARA CON LA VARIABLE Y EL VALOR MAPEADO DEL AN0
+        if  (PWM3 >= POT0){             
          PORTCbits.RC3 = 0;
-         
          }
         else     {
          PORTCbits.RC3 = 1;
          }
-         
-        
         INTCONbits.T0IF = 0;            //LIMPIO LA BANDERA DE T0IF
     }
     if (ADIF == 1){
         VALORAN = ADRESH;               //CARGAMOS ADRESH A VALORAN
-                      //LIMPIAMOS LA BANDERA DEL ADC
-       
-        PIR1bits.ADIF = 0;
+        PIR1bits.ADIF = 0;              //LIMPIAMOS LA BANDERA DEL ADC
     }
     
     ei();                           //POP
@@ -71,10 +71,16 @@ void main (void){
     setup();  
     while(1){
         
-        if (PWM3>= 50){
+        if (PWM3>= 50){         //CONTROL DEL PERIODO DE PWM3
           PWM3 = 0;}
-        ANALOGICOS(VALORAN);
+        ANALOGICOS(VALORAN);    //FUNCION DE VALORES ANALOGICOS
         
+        if (RB0 == 1 && RB0_FLAG == 0){//HASTA DEJAR DE SER PRESIONADO
+            EEPROM_W(POT0, SERVO1);
+            EEPROM_W(POT1, SERVO2);
+            EEPROM_W(POT2, SERVO3);
+        }
+        RB0_FLAG = RB0;
     }
 
 }
@@ -87,9 +93,10 @@ void setup(void){
     TRISC = 0X00;               //PORTC COMO OUTPUT
     TRISD = 0X00;               //PORTD COMO OUTPUT
     TRISE = 0X00;               //PORTE COMO OUTPUT
-    TRISB = 0X00;                
+    TRISB = 0X03;               //RB0, RB1 COMO INPUT 
     
     PORTA = 0X00;                //LIMPIAMOS EL PUERTOA
+    PORTB = 0X00;                //LIMPIAMOS EL PUERTOB
     PORTC = 0X00;                //LIMPIAMOS EL PUERTOC
     PORTD = 0X00;                //LIMPIAMOS EL PUERTOD
     PORTE = 0X00;                //LIMPIAMOS EL PUERTOE
@@ -101,8 +108,11 @@ void setup(void){
     OSCCONbits.SCS = 1;         //RELOJ INTERNO 
     
     //CONFIGURACION DEL TMR0
-    OPTION_REG = 0B11010000;    //RBPU HABILITADO, PSA (0) PRESCALER 1:16
+    OPTION_REG = 0B01010000;    //RBPU HABILITADO, PSA (0) PRESCALER 1:16
     TMR0 = _tmr0_value;         //TMR0 A 50 us
+    //CONFIGURACION DEL IOC
+    WPUB = 0B00000111;          //WEAK PULL UP ACTIVADO
+    IOCB = 0B00000111;          //INTERRUPT ON CHANGE HABILITADO
     //CONFIGURACION DEL TMR2
     T2CON = 0B11111111;         //POSTCALR 1:16, PRESCALER 16
     PR2 = 187;                  //PERIODO DE 3ms
@@ -123,12 +133,6 @@ void setup(void){
     ADCON1bits.ADFM = 0;        //JUSTIFICADO A LA IZQUIERDA
     ADCON1bits.VCFG0 = 0;       //VOLTAGE DE REFERENCIA EN VDD
     ADCON1bits.VCFG1 = 0;       //VOLTAGE DE REFERENCIA EN VSS
-  /*  //CONFIGURACION DEL IOC
-    WPUB0 = 1 ;
-    WPUB1 = 1 ;
-    IOCB0 = 1 ;
-    IOCB1 = 1 ;
-    */
     //CONFIGURACION DE INTERRUPCIONES
     INTCONbits.GIE = 1;         //HABILITAMOS LAS INTERRUPCIONES GLOBALES
     INTCONbits.T0IE = 1;        //HABILITAMOS LA INTERRUPCION DE TMR0
@@ -136,7 +140,7 @@ void setup(void){
     PIE1bits.ADIE = 1;          //HABILITAMOS LA INTERRUPCION DEL ADC
     PIR1bits.ADIF = 0;
    // INTCONbits.RBIE = 1;        //HABILITAMOS LAS INTERRUPCIONES IOC
-   // INTCONbits.RBIF = 0;        //LIMPIAMOS LA BANDER DE IOC
+    //INTCONbits.RBIF = 0;        //LIMPIAMOS LA BANDER DE IOC
 }
 
 
@@ -151,18 +155,44 @@ void ANALOGICOS(int VALORAN){
             break;
             
         case 1:
-            CCPR1L = (((0.467*VALORAN)+31));
+            POT1 = (((0.467*VALORAN)+31));
+            CCPR1L = POT1;
             ADCON0bits.CHS = 2;   //COLOCAMOS EL CANAL 2 PORTA2
             __delay_us(100);
            ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC*/
             break;
             
         case 2:
-            CCPR2L = ((0.467*VALORAN)+31);
+            POT2 = ((0.467*VALORAN)+31);
+            CCPR2L = POT2;
             ADCON0bits.CHS = 0;   //COLOCAMOS EL CANAL 3 PORTA3
            __delay_us(100);
              ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC*/
             break;
             
     }
+}
+
+void EEPROM_W(unsigned int dato, int add){
+    EEADR = add;                //COLOCAMOS LA DIRECCION
+    EEDAT = dato;               //COLOCAMOS EL DATO
+    EECON1bits.EEPGD = 0;       //ENTRAMOS A LA PROGRAM MEMORY (EEPROM) 
+    EECON1bits.WREN = 1;        //HABILITAMOS ESCRITURA 
+    INTCONbits.GIE = 0;         //DESHABILIATMOS LAS INTERRUPCIONES GLOBALES
+    EECON2 = 0X55;              //REALIZAMOS SECUENCIA REQUERIDA
+    EECON2 = 0XAA;
+    EECON1bits.WR = 1;
+    while(PIR2bits.EEIF == 0);  //MIENTRAS LA BANDERA ESTE EN 0 SE ESTA ENVIANDO EL DATO
+    PIR2bits.EEIF = 0;
+    EECON1bits.WREN = 0;        //DESHABILITAMOS LA ESCRITURA
+    INTCONbits.GIE = 1;         //DESHABILIATMOS LAS INTERRUPCIONES GLOBALES
+//    return EECON1bits.WRERR;    //NOS SERVIRA PARA REVISAR QUE EL DATO SE ENVIO DE MANERA CORRECTA
+    
+}
+unsigned int EEPROM_R(unsigned int add){
+    EEADR = add;
+    EECON1bits.EEPGD = 0;       //ENTRAMOS A LA PROGRAM MEMORY (EEPROM)
+    EECON1bits.RD = 1;          //HABILITAMOS PARA LEER
+    unsigned int dato = EEDATA; //CARGAMOS EL VALOR PARA EXTRAERLO
+    return dato;
 }

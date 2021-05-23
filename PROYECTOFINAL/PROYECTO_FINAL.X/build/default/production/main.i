@@ -2710,14 +2710,19 @@ extern __bank0 __bit __timeout;
 
 
 
+
+
+
 int PWM3=0;
-int POT0 = 0;
-int POT1 = 0;
-int POT2 = 0;
+unsigned int POT0 = 0;
+unsigned int POT1 = 0;
+unsigned int POT2 = 0;
 int VALORAN = 0;
+int RB0_FLAG = 1;
 
 void setup (void);
-
+void EEPROM_W(unsigned int dato, int add);
+unsigned int EEPROM_R(unsigned int add);
 void ANALOGICOS(int VALORAN);
 
 
@@ -2729,19 +2734,14 @@ void __attribute__((picinterrupt((""))))isr(void){
 
         if (PWM3 >= POT0){
          PORTCbits.RC3 = 0;
-
          }
         else {
          PORTCbits.RC3 = 1;
          }
-
-
         INTCONbits.T0IF = 0;
     }
     if (ADIF == 1){
         VALORAN = ADRESH;
-
-
         PIR1bits.ADIF = 0;
     }
 
@@ -2756,6 +2756,12 @@ void main (void){
           PWM3 = 0;}
         ANALOGICOS(VALORAN);
 
+        if (RB0 == 1 && RB0_FLAG == 0){
+            EEPROM_W(POT0, 0);
+            EEPROM_W(POT1, 1);
+            EEPROM_W(POT2, 2);
+        }
+        RB0_FLAG = RB0;
     }
 
 }
@@ -2768,9 +2774,10 @@ void setup(void){
     TRISC = 0X00;
     TRISD = 0X00;
     TRISE = 0X00;
-    TRISB = 0X00;
+    TRISB = 0X03;
 
     PORTA = 0X00;
+    PORTB = 0X00;
     PORTC = 0X00;
     PORTD = 0X00;
     PORTE = 0X00;
@@ -2782,8 +2789,11 @@ void setup(void){
     OSCCONbits.SCS = 1;
 
 
-    OPTION_REG = 0B11010000;
+    OPTION_REG = 0B01010000;
     TMR0 = 231;
+
+    WPUB = 0B00000111;
+    IOCB = 0B00000111;
 
     T2CON = 0B11111111;
     PR2 = 187;
@@ -2804,12 +2814,6 @@ void setup(void){
     ADCON1bits.ADFM = 0;
     ADCON1bits.VCFG0 = 0;
     ADCON1bits.VCFG1 = 0;
-
-
-
-
-
-
 
     INTCONbits.GIE = 1;
     INTCONbits.T0IE = 1;
@@ -2832,18 +2836,44 @@ void ANALOGICOS(int VALORAN){
             break;
 
         case 1:
-            CCPR1L = (((0.467*VALORAN)+31));
+            POT1 = (((0.467*VALORAN)+31));
+            CCPR1L = POT1;
             ADCON0bits.CHS = 2;
             _delay((unsigned long)((100)*(4000000/4000000.0)));
            ADCON0bits.GO = 1;
             break;
 
         case 2:
-            CCPR2L = ((0.467*VALORAN)+31);
+            POT2 = ((0.467*VALORAN)+31);
+            CCPR2L = POT2;
             ADCON0bits.CHS = 0;
            _delay((unsigned long)((100)*(4000000/4000000.0)));
              ADCON0bits.GO = 1;
             break;
 
     }
+}
+
+void EEPROM_W(unsigned int dato, int add){
+    EEADR = add;
+    EEDAT = dato;
+    EECON1bits.EEPGD = 0;
+    EECON1bits.WREN = 1;
+    INTCONbits.GIE = 0;
+    EECON2 = 0X55;
+    EECON2 = 0XAA;
+    EECON1bits.WR = 1;
+    while(PIR2bits.EEIF == 0);
+    PIR2bits.EEIF = 0;
+    EECON1bits.WREN = 0;
+    INTCONbits.GIE = 1;
+
+
+}
+unsigned int EEPROM_R(unsigned int add){
+    EEADR = add;
+    EECON1bits.EEPGD = 0;
+    EECON1bits.RD = 1;
+    unsigned int dato = EEDATA;
+    return dato;
 }

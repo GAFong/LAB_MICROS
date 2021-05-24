@@ -17,16 +17,18 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"48 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
+"56 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
-"70
+"78
 [v _main main `(v  1 e 1 0 ]
-"87
+"136
 [v _setup setup `(v  1 e 1 0 ]
-"147
+"196
 [v _ANALOGICOS ANALOGICOS `(v  1 e 1 0 ]
-"176
+"225
 [v _EEPROM_W EEPROM_W `(v  1 e 1 0 ]
+"241
+[v _EEPROM_R EEPROM_R `(ui  1 e 2 0 ]
 "59 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
 "166
@@ -79,7 +81,7 @@
 "553
 [u S87 . 1 `S79 1 . 1 0 ]
 [v _PIR1bits PIR1bits `VES87  1 e 1 @12 ]
-[s S292 . 1 `uc 1 CCP2IF 1 0 :1:0 
+[s S302 . 1 `uc 1 CCP2IF 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 ULPWUIF 1 0 :1:2 
 `uc 1 BCLIF 1 0 :1:3 
@@ -89,8 +91,8 @@
 `uc 1 OSFIF 1 0 :1:7 
 ]
 "610
-[u S301 . 1 `S292 1 . 1 0 ]
-[v _PIR2bits PIR2bits `VES301  1 e 1 @13 ]
+[u S311 . 1 `S302 1 . 1 0 ]
+[v _PIR2bits PIR2bits `VES311  1 e 1 @13 ]
 "772
 [v _T2CON T2CON `VEuc  1 e 1 @18 ]
 "927
@@ -99,29 +101,29 @@
 [v _CCP1CON CCP1CON `VEuc  1 e 1 @23 ]
 "1154
 [v _CCPR2L CCPR2L `VEuc  1 e 1 @27 ]
-[s S158 . 1 `uc 1 CCP2M 1 0 :4:0 
+[s S170 . 1 `uc 1 CCP2M 1 0 :4:0 
 `uc 1 DC2B0 1 0 :1:4 
 `uc 1 DC2B1 1 0 :1:5 
 ]
 "1188
-[s S162 . 1 `uc 1 CCP2M0 1 0 :1:0 
+[s S174 . 1 `uc 1 CCP2M0 1 0 :1:0 
 `uc 1 CCP2M1 1 0 :1:1 
 `uc 1 CCP2M2 1 0 :1:2 
 `uc 1 CCP2M3 1 0 :1:3 
 `uc 1 CCP2Y 1 0 :1:4 
 `uc 1 CCP2X 1 0 :1:5 
 ]
-[u S169 . 1 `S158 1 . 1 0 `S162 1 . 1 0 ]
-[v _CCP2CONbits CCP2CONbits `VES169  1 e 1 @29 ]
+[u S181 . 1 `S170 1 . 1 0 `S174 1 . 1 0 ]
+[v _CCP2CONbits CCP2CONbits `VES181  1 e 1 @29 ]
 "1238
 [v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
-[s S184 . 1 `uc 1 ADON 1 0 :1:0 
+[s S196 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :4:2 
 `uc 1 ADCS 1 0 :2:6 
 ]
 "1276
-[s S189 . 1 `uc 1 . 1 0 :1:0 
+[s S201 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -130,14 +132,14 @@
 `uc 1 ADCS0 1 0 :1:6 
 `uc 1 ADCS1 1 0 :1:7 
 ]
-[s S198 . 1 `uc 1 . 1 0 :1:0 
+[s S210 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 nDONE 1 0 :1:1 
 ]
-[s S201 . 1 `uc 1 . 1 0 :1:0 
+[s S213 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO_DONE 1 0 :1:1 
 ]
-[u S204 . 1 `S184 1 . 1 0 `S189 1 . 1 0 `S198 1 . 1 0 `S201 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES204  1 e 1 @31 ]
+[u S216 . 1 `S196 1 . 1 0 `S201 1 . 1 0 `S210 1 . 1 0 `S213 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES216  1 e 1 @31 ]
 "1346
 [v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
 "1416
@@ -150,7 +152,7 @@
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1664
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
-[s S251 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S263 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -159,37 +161,37 @@
 `uc 1 ADIE 1 0 :1:6 
 ]
 "1718
-[u S259 . 1 `S251 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES259  1 e 1 @140 ]
-[s S126 . 1 `uc 1 SCS 1 0 :1:0 
+[u S271 . 1 `S263 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES271  1 e 1 @140 ]
+[s S138 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S132 . 1 `uc 1 . 1 0 :4:0 
+[s S144 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S137 . 1 `S126 1 . 1 0 `S132 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES137  1 e 1 @143 ]
+[u S149 . 1 `S138 1 . 1 0 `S144 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES149  1 e 1 @143 ]
 "2041
 [v _PR2 PR2 `VEuc  1 e 1 @146 ]
 "2346
 [v _WPUB WPUB `VEuc  1 e 1 @149 ]
 "2416
 [v _IOCB IOCB `VEuc  1 e 1 @150 ]
-[s S236 . 1 `uc 1 . 1 0 :4:0 
+[s S248 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 VCFG0 1 0 :1:4 
 `uc 1 VCFG1 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 ADFM 1 0 :1:7 
 ]
 "2991
-[u S242 . 1 `S236 1 . 1 0 ]
-[v _ADCON1bits ADCON1bits `VES242  1 e 1 @159 ]
+[u S254 . 1 `S248 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES254  1 e 1 @159 ]
 "3245
 [v _EEDATA EEDATA `VEuc  1 e 1 @268 ]
 "3250
@@ -200,7 +202,7 @@
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-[s S274 . 1 `uc 1 RD 1 0 :1:0 
+[s S284 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -208,50 +210,73 @@
 `uc 1 EEPGD 1 0 :1:7 
 ]
 "3514
-[u S281 . 1 `S274 1 . 1 0 ]
-[v _EECON1bits EECON1bits `VES281  1 e 1 @396 ]
+[u S291 . 1 `S284 1 . 1 0 ]
+[v _EECON1bits EECON1bits `VES291  1 e 1 @396 ]
 "3544
 [v _EECON2 EECON2 `VEuc  1 e 1 @397 ]
 "3587
 [v _ADIF ADIF `VEb  1 e 0 @102 ]
 "4103
 [v _RB0 RB0 `VEb  1 e 0 @48 ]
+"4106
+[v _RB1 RB1 `VEb  1 e 0 @49 ]
+"4115
+[v _RB4 RB4 `VEb  1 e 0 @52 ]
+"4118
+[v _RB5 RB5 `VEb  1 e 0 @53 ]
+"4121
+[v _RB6 RB6 `VEb  1 e 0 @54 ]
+"4124
+[v _RB7 RB7 `VEb  1 e 0 @55 ]
 "4322
 [v _T0IF T0IF `VEb  1 e 0 @90 ]
-"35 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
+"41 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
 [v _PWM3 PWM3 `i  1 e 2 0 ]
-"36
+"42
 [v _POT0 POT0 `ui  1 e 2 0 ]
-"37
+"43
 [v _POT1 POT1 `ui  1 e 2 0 ]
-"38
+"44
 [v _POT2 POT2 `ui  1 e 2 0 ]
-"39
+"45
 [v _VALORAN VALORAN `i  1 e 2 0 ]
-"40
+"46
 [v _RB0_FLAG RB0_FLAG `i  1 e 2 0 ]
-"70
+"47
+[v _RB1_FLAG RB1_FLAG `i  1 e 2 0 ]
+"48
+[v _SEL_G SEL_G `i  1 e 2 0 ]
+"78
 [v _main main `(v  1 e 1 0 ]
 {
-"86
+"135
 } 0
-"87
+"136
 [v _setup setup `(v  1 e 1 0 ]
 {
-"144
+"193
 } 0
-"176
+"225
 [v _EEPROM_W EEPROM_W `(v  1 e 1 0 ]
 {
 [v EEPROM_W@dato dato `ui  1 p 2 0 ]
 [v EEPROM_W@add add `i  1 p 2 2 ]
-"191
+"240
 } 0
-"147
+"241
+[v _EEPROM_R EEPROM_R `(ui  1 e 2 0 ]
+{
+"245
+[v EEPROM_R@dato dato `ui  1 a 2 2 ]
+"241
+[v EEPROM_R@add add `ui  1 p 2 4 ]
+"247
+} 0
+"196
 [v _ANALOGICOS ANALOGICOS `(v  1 e 1 0 ]
 {
 [v ANALOGICOS@VALORAN VALORAN `i  1 p 2 0 ]
-"174
+"223
 } 0
 "10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -281,17 +306,17 @@
 "8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S677 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S689 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S682 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S685 . 4 `l 1 i 4 0 `d 1 f 4 0 `S677 1 fAsBytes 4 0 `S682 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S685  1 a 4 34 ]
+[s S694 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S697 . 4 `l 1 i 4 0 `d 1 f 4 0 `S689 1 fAsBytes 4 0 `S694 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S697  1 a 4 34 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 29 ]
-[s S754 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S766 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S757 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S754 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S757  1 a 2 38 ]
+[u S769 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S766 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S769  1 a 2 38 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 33 ]
 "11
@@ -333,8 +358,8 @@
 [v ___fladd@a a `d  1 p 4 44 ]
 "237
 } 0
-"48 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
+"56 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"68
+"76
 } 0

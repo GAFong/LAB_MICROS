@@ -2705,20 +2705,15 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-
-
-
-
-
-
-
-
+# 41 "main.c"
 int PWM3=0;
 unsigned int POT0 = 0;
 unsigned int POT1 = 0;
 unsigned int POT2 = 0;
 int VALORAN = 0;
 int RB0_FLAG = 1;
+int RB1_FLAG = 1;
+int SEL_G = 0;
 
 void setup (void);
 void EEPROM_W(unsigned int dato, int add);
@@ -2751,17 +2746,58 @@ void __attribute__((picinterrupt((""))))isr(void){
 void main (void){
     setup();
     while(1){
-
+        while(RB6 == 1 && RB7 ==1){
+            PORTE = 0X01;
         if (PWM3>= 50){
           PWM3 = 0;}
         ANALOGICOS(VALORAN);
 
         if (RB0 == 1 && RB0_FLAG == 0){
-            EEPROM_W(POT0, 0);
-            EEPROM_W(POT1, 1);
-            EEPROM_W(POT2, 2);
+            switch (SEL_G){
+                case 0:
+                    EEPROM_W(POT0, 0);
+                    EEPROM_W(POT1, 1);
+                    EEPROM_W(POT2, 2);
+                    SEL_G = 1;
+                    break;
+                case 1:
+                    EEPROM_W(POT0, 3);
+                    EEPROM_W(POT1, 4);
+                    EEPROM_W(POT2, 5);
+                    SEL_G = 2;
+                    break;
+                case 2:
+                    EEPROM_W(POT0, 6);
+                    EEPROM_W(POT1, 7);
+                    EEPROM_W(POT2, 8);
+                    SEL_G = 0;
+                    break;
+            }
         }
         RB0_FLAG = RB0;
+        }
+
+        while (RB6 == 0 && RB7 == 1){
+            PORTE = 0X02;
+            if (PWM3>= 50){
+                PWM3 = 0;}
+            if (RB4 == 0 && RB5 == 1){
+                POT0 = EEPROM_R(0);
+                CCPR1L = EEPROM_R(1);
+                CCPR2L = EEPROM_R(2);
+        }
+            if (RB4 == 1 && RB5 == 0){
+                POT0 = EEPROM_R(3);
+                CCPR1L = EEPROM_R(4);
+                CCPR2L = EEPROM_R(5);
+        }
+            if (RB4 == 0 && RB5 == 0){
+                POT0 = EEPROM_R(6);
+                CCPR1L = EEPROM_R(7);
+                CCPR2L = EEPROM_R(8);
+        }
+        RB1_FLAG = RB1;
+        }
     }
 
 }
@@ -2774,7 +2810,7 @@ void setup(void){
     TRISC = 0X00;
     TRISD = 0X00;
     TRISE = 0X00;
-    TRISB = 0X03;
+    TRISB = 0B11110011;
 
     PORTA = 0X00;
     PORTB = 0X00;
@@ -2792,8 +2828,8 @@ void setup(void){
     OPTION_REG = 0B01010000;
     TMR0 = 231;
 
-    WPUB = 0B00000111;
-    IOCB = 0B00000111;
+    WPUB = 0B11110011;
+    IOCB = 0B11110011;
 
     T2CON = 0B11111111;
     PR2 = 187;
@@ -2820,8 +2856,8 @@ void setup(void){
     INTCONbits.T0IF = 0;
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 0;
-
-
+    INTCONbits.RBIE = 0;
+    INTCONbits.RBIF = 0;
 }
 
 

@@ -197,7 +197,7 @@ void ANALOGICOS(int VALORAN){
      
     switch(ADCON0bits.CHS){
         case 0:
-            POT0 = ((0.1058*VALORAN)+8);    //MAPEO DEL SERVO 3
+            POT0 = ((0.07058*VALORAN)+8);    //MAPEO DEL SERVO 3, (8,26)
             ADCON0bits.CHS = 1;   //COLOCAMOS EL CANAL 1 PORTA1
            __delay_us(100);
             ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC*/
@@ -212,7 +212,7 @@ void ANALOGICOS(int VALORAN){
             break;
             
         case 2:
-            POT2 = ((0.467*VALORAN)+31);
+            POT2 = ((0.349*VALORAN)+31);
             CCPR2L = POT2;
             ADCON0bits.CHS = 0;   //COLOCAMOS EL CANAL 3 PORTA3
            __delay_us(100);

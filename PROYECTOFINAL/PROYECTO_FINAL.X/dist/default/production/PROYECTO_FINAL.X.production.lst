@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
-                                                                                               Sun May 23 21:16:39 2021
+                                                                                               Mon May 24 22:33:18 2021
 
 Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
      1                           	processor	16F887
@@ -1623,7 +1623,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1608  0EAD  2FE5               	goto	l2398
   1609  0EAE                     l2368:
   1610                           
-  1611                           ;main.c: 200:             POT0 = ((0.1058*VALORAN)+8);
+  1611                           ;main.c: 200:             POT0 = ((0.07058*VALORAN)+8);
   1612  0EAE  0820               	movf	ANALOGICOS@VALORAN^(0+128),w
   1613  0EAF  1283               	bcf	3,5	;RP0=0, select bank0
   1614  0EB0  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1653,11 +1653,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1638  0ECC  00B2               	movwf	___flmul@a
   1639  0ECD  303D               	movlw	61
   1640  0ECE  00B1               	movwf	___flmul@b+3
-  1641  0ECF  30D8               	movlw	216
+  1641  0ECF  3090               	movlw	144
   1642  0ED0  00B0               	movwf	___flmul@b+2
-  1643  0ED1  30AD               	movlw	173
+  1643  0ED1  308C               	movlw	140
   1644  0ED2  00AF               	movwf	___flmul@b+1
-  1645  0ED3  30AC               	movlw	172
+  1645  0ED3  303F               	movlw	63
   1646  0ED4  00AE               	movwf	___flmul@b
   1647  0ED5  120A  118A  203F  120A  158A  	fcall	___flmul
   1648  0EDA  1283               	bcf	3,5	;RP0=0, select bank0
@@ -1832,7 +1832,7 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1817  0F7D  2FFF               	goto	l163
   1818  0F7E                     l2386:
   1819                           
-  1820                           ;main.c: 215:             POT2 = ((0.467*VALORAN)+31);
+  1820                           ;main.c: 215:             POT2 = ((0.349*VALORAN)+31);
   1821  0F7E  0820               	movf	ANALOGICOS@VALORAN^(0+128),w
   1822  0F7F  1283               	bcf	3,5	;RP0=0, select bank0
   1823  0F80  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1862,11 +1862,11 @@ Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1
   1847  0F9C  00B2               	movwf	___flmul@a
   1848  0F9D  303E               	movlw	62
   1849  0F9E  00B1               	movwf	___flmul@b+3
-  1850  0F9F  30EF               	movlw	239
+  1850  0F9F  30B2               	movlw	178
   1851  0FA0  00B0               	movwf	___flmul@b+2
-  1852  0FA1  301A               	movlw	26
+  1852  0FA1  30B0               	movlw	176
   1853  0FA2  00AF               	movwf	___flmul@b+1
-  1854  0FA3  30A0               	movlw	160
+  1854  0FA3  3021               	movlw	33
   1855  0FA4  00AE               	movwf	___flmul@b
   1856  0FA5  120A  118A  203F  120A  158A  	fcall	___flmul
   1857  0FAA  1283               	bcf	3,5	;RP0=0, select bank0
@@ -4859,7 +4859,7 @@ EEDATA             100      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
-Symbol Table                                                                                   Sun May 23 21:16:39 2021
+Symbol Table                                                                                   Mon May 24 22:33:18 2021
 
     __Umul8_16@word_mpld 0024                      l129 0720                      l163 0FFF  
                     l155 0D74                      l172 07FE                      l166 0CB8  

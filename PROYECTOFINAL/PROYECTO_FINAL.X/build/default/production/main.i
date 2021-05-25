@@ -2865,7 +2865,7 @@ void ANALOGICOS(int VALORAN){
 
     switch(ADCON0bits.CHS){
         case 0:
-            POT0 = ((0.1058*VALORAN)+8);
+            POT0 = ((0.07058*VALORAN)+8);
             ADCON0bits.CHS = 1;
            _delay((unsigned long)((100)*(4000000/4000000.0)));
             ADCON0bits.GO = 1;
@@ -2880,7 +2880,7 @@ void ANALOGICOS(int VALORAN){
             break;
 
         case 2:
-            POT2 = ((0.467*VALORAN)+31);
+            POT2 = ((0.349*VALORAN)+31);
             CCPR2L = POT2;
             ADCON0bits.CHS = 0;
            _delay((unsigned long)((100)*(4000000/4000000.0)));

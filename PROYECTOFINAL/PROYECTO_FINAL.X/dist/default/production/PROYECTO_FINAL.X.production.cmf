@@ -36,7 +36,7 @@ dataBANK0 BANK0 1 6D 6D 2 1
 dataBANK1 BANK1 1 A9 A9 2 1
 bssCOMMON COMMON 1 76 76 4 1
 config CONFIG 4 2007 2007 2 2
-$C:\Users\DELL\AppData\Local\Temp\sh28.o
+$C:\Users\DELL\AppData\Local\Temp\sf3k.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -91,39 +91,39 @@ STRING 1000-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\PROYECTO_FINAL.X.production.o
-F cinit CODE >550:C:\Users\DELL\AppData\Local\Temp\sh28.s
-F cinit CODE >553:C:\Users\DELL\AppData\Local\Temp\sh28.s
-F cinit CODE >602:C:\Users\DELL\AppData\Local\Temp\sh28.s
-10 cinit CODE >603:C:\Users\DELL\AppData\Local\Temp\sh28.s
-11 cinit CODE >604:C:\Users\DELL\AppData\Local\Temp\sh28.s
-16 cinit CODE >605:C:\Users\DELL\AppData\Local\Temp\sh28.s
-17 cinit CODE >606:C:\Users\DELL\AppData\Local\Temp\sh28.s
-1C cinit CODE >607:C:\Users\DELL\AppData\Local\Temp\sh28.s
-1D cinit CODE >611:C:\Users\DELL\AppData\Local\Temp\sh28.s
-1E cinit CODE >612:C:\Users\DELL\AppData\Local\Temp\sh28.s
-1F cinit CODE >613:C:\Users\DELL\AppData\Local\Temp\sh28.s
-24 cinit CODE >614:C:\Users\DELL\AppData\Local\Temp\sh28.s
-25 cinit CODE >615:C:\Users\DELL\AppData\Local\Temp\sh28.s
-2A cinit CODE >616:C:\Users\DELL\AppData\Local\Temp\sh28.s
-2B cinit CODE >620:C:\Users\DELL\AppData\Local\Temp\sh28.s
-2C cinit CODE >621:C:\Users\DELL\AppData\Local\Temp\sh28.s
-2D cinit CODE >622:C:\Users\DELL\AppData\Local\Temp\sh28.s
-2E cinit CODE >623:C:\Users\DELL\AppData\Local\Temp\sh28.s
-2F cinit CODE >626:C:\Users\DELL\AppData\Local\Temp\sh28.s
-30 cinit CODE >627:C:\Users\DELL\AppData\Local\Temp\sh28.s
-31 cinit CODE >628:C:\Users\DELL\AppData\Local\Temp\sh28.s
-32 cinit CODE >629:C:\Users\DELL\AppData\Local\Temp\sh28.s
-33 cinit CODE >630:C:\Users\DELL\AppData\Local\Temp\sh28.s
-34 cinit CODE >631:C:\Users\DELL\AppData\Local\Temp\sh28.s
-35 cinit CODE >632:C:\Users\DELL\AppData\Local\Temp\sh28.s
-36 cinit CODE >633:C:\Users\DELL\AppData\Local\Temp\sh28.s
-37 cinit CODE >636:C:\Users\DELL\AppData\Local\Temp\sh28.s
-38 cinit CODE >637:C:\Users\DELL\AppData\Local\Temp\sh28.s
-39 cinit CODE >638:C:\Users\DELL\AppData\Local\Temp\sh28.s
-3A cinit CODE >639:C:\Users\DELL\AppData\Local\Temp\sh28.s
-3B cinit CODE >645:C:\Users\DELL\AppData\Local\Temp\sh28.s
-3B cinit CODE >647:C:\Users\DELL\AppData\Local\Temp\sh28.s
-3C cinit CODE >648:C:\Users\DELL\AppData\Local\Temp\sh28.s
+F cinit CODE >550:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+F cinit CODE >553:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+F cinit CODE >602:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+10 cinit CODE >603:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+11 cinit CODE >604:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+16 cinit CODE >605:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+17 cinit CODE >606:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+1C cinit CODE >607:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+1D cinit CODE >611:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+1E cinit CODE >612:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+1F cinit CODE >613:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+24 cinit CODE >614:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+25 cinit CODE >615:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+2A cinit CODE >616:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+2B cinit CODE >620:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+2C cinit CODE >621:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+2D cinit CODE >622:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+2E cinit CODE >623:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+2F cinit CODE >626:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+30 cinit CODE >627:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+31 cinit CODE >628:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+32 cinit CODE >629:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+33 cinit CODE >630:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+34 cinit CODE >631:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+35 cinit CODE >632:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+36 cinit CODE >633:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+37 cinit CODE >636:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+38 cinit CODE >637:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+39 cinit CODE >638:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+3A cinit CODE >639:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+3B cinit CODE >645:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+3B cinit CODE >647:C:\Users\DELL\AppData\Local\Temp\sf3k.s
+3C cinit CODE >648:C:\Users\DELL\AppData\Local\Temp\sf3k.s
 4 intentry CODE >56:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
 CED text10 CODE >56:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
 CED text10 CODE >57:C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
@@ -574,10 +574,10 @@ _PWM3 6B 0 BANK0 1 bssBANK0 dist/default/production\PROYECTO_FINAL.X.production.
 _T0IF 5A 0 ABS 0 - dist/default/production\PROYECTO_FINAL.X.production.o
 _TMR0 1 0 ABS 0 - dist/default/production\PROYECTO_FINAL.X.production.o
 _WPUB 95 0 ABS 0 - dist/default/production\PROYECTO_FINAL.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\sh28.o
+___sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\sf3k.o
 _main C50 0 CODE 0 maintext dist/default/production\PROYECTO_FINAL.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\PROYECTO_FINAL.X.production.o
-start 18 0 CODE 0 init C:\Users\DELL\AppData\Local\Temp\sh28.o
+start 18 0 CODE 0 init C:\Users\DELL\AppData\Local\Temp\sf3k.o
 ___flmul@aexp 3C 0 BANK0 1 cstackBANK0 dist/default/production\PROYECTO_FINAL.X.production.o
 ___flmul@bexp 41 0 BANK0 1 cstackBANK0 dist/default/production\PROYECTO_FINAL.X.production.o
 ___flmul@prod 42 0 BANK0 1 cstackBANK0 dist/default/production\PROYECTO_FINAL.X.production.o
@@ -591,12 +591,12 @@ __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __LidataBANK0 0 0 ABS 0 idataBANK0 -
 __LidataBANK1 0 0 ABS 0 idataBANK1 -
 __Hpowerup 0 0 CODE 0 powerup -
-intlevel0 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sh28.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sh28.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sh28.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sh28.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sh28.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sh28.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sf3k.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sf3k.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sf3k.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sf3k.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sf3k.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\DELL\AppData\Local\Temp\sf3k.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\PROYECTO_FINAL.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\PROYECTO_FINAL.X.production.o
@@ -622,8 +622,8 @@ __end_of___flmul 740 0 CODE 0 text7 dist/default/production\PROYECTO_FINAL.X.pro
 __end_of___fltol 1BE2 0 CODE 0 text6 dist/default/production\PROYECTO_FINAL.X.production.o
 __Umul8_16@multiplicand 74 0 COMMON 1 cstackCOMMON dist/default/production\PROYECTO_FINAL.X.production.o
 _OPTION_REG 81 0 ABS 0 - dist/default/production\PROYECTO_FINAL.X.production.o
-___stackhi 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\sh28.o
-___stacklo 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\sh28.o
+___stackhi 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\sf3k.o
+___stacklo 0 0 ABS 0 - C:\Users\DELL\AppData\Local\Temp\sf3k.o
 ___fladd@a 4C 0 BANK0 1 cstackBANK0 dist/default/production\PROYECTO_FINAL.X.production.o
 ___fladd@b 48 0 BANK0 1 cstackBANK0 dist/default/production\PROYECTO_FINAL.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\PROYECTO_FINAL.X.production.o
@@ -638,7 +638,7 @@ __pcstackBANK1 A0 0 BANK1 1 cstackBANK1 dist/default/production\PROYECTO_FINAL.X
 EEPROM_W@dato 20 0 BANK0 1 cstackBANK0 dist/default/production\PROYECTO_FINAL.X.production.o
 __end_of_EEPROM_R FFE 0 CODE 0 text3 dist/default/production\PROYECTO_FINAL.X.production.o
 __end_of_EEPROM_W 1988 0 CODE 0 text2 dist/default/production\PROYECTO_FINAL.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\sh28.o
+___int_sp 0 0 STACK 2 stack C:\Users\DELL\AppData\Local\Temp\sf3k.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -697,7 +697,7 @@ saved_w 7E 0 ABS 0 - dist/default/production\PROYECTO_FINAL.X.production.o
 ___xxtofl 1BE2 0 CODE 0 text5 dist/default/production\PROYECTO_FINAL.X.production.o
 __end_of_isr 1A40 0 CODE 0 text10 dist/default/production\PROYECTO_FINAL.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\DELL\AppData\Local\Temp\sh28.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\DELL\AppData\Local\Temp\sf3k.o
 __end_of___xxtofl 1D5A 0 CODE 0 text5 dist/default/production\PROYECTO_FINAL.X.production.o
 __pdataBANK0 6D 0 BANK0 1 dataBANK0 dist/default/production\PROYECTO_FINAL.X.production.o
 __pdataBANK1 A9 0 BANK1 1 dataBANK1 dist/default/production\PROYECTO_FINAL.X.production.o

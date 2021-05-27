@@ -14,6 +14,7 @@
 
 
 
+
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdio.h" 1 3
 
 
@@ -111,7 +112,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 8 "main.c" 2
+# 9 "main.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -209,7 +210,7 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 9 "main.c" 2
+# 10 "main.c" 2
 
 # 1 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
@@ -2687,7 +2688,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 10 "main.c" 2
+# 11 "main.c" 2
 
 
 
@@ -2705,15 +2706,17 @@ extern __bank0 __bit __timeout;
 
 #pragma config BOR4V = BOR40V
 #pragma config WRT = OFF
-# 41 "main.c"
+# 42 "main.c"
 int PWM3=0;
 unsigned int POT0 = 0;
 unsigned int POT1 = 0;
 unsigned int POT2 = 0;
 int VALORAN = 0;
+int DATO;
 int RB0_FLAG = 1;
 int RB1_FLAG = 1;
 int SEL_G = 0;
+int SEL;
 
 void setup (void);
 void EEPROM_W(unsigned int dato, int add);
@@ -2724,22 +2727,34 @@ void ANALOGICOS(int VALORAN);
 void __attribute__((picinterrupt((""))))isr(void){
     (INTCONbits.GIE = 0);
     if (T0IF == 1){
-        TMR0 = 231;
+        TMR0 = 206;
         PWM3++;
 
-        if (PWM3 >= POT0){
-         PORTCbits.RC3 = 0;
-         }
-        else {
-         PORTCbits.RC3 = 1;
-         }
-        INTCONbits.T0IF = 0;
+        if (PWM3>= 25){
+          PWM3 = 0;}
+          if (PWM3 >= POT0){
+           PORTCbits.RC3 = 0;
+           }
+          else {
+           PORTCbits.RC3 = 1;
+           }
+          INTCONbits.T0IF = 0;
+
+
     }
+
     if (ADIF == 1){
         VALORAN = ADRESH;
         PIR1bits.ADIF = 0;
     }
+    if (PIR1bits.RCIF){
+        if (RCREG >= 97 && RCREG <= 99 ){
+                SEL = RCREG; }
+        else {
+            DATO = RCREG;
+        }
 
+    }
     (INTCONbits.GIE = 1);
 }
 
@@ -2748,8 +2763,7 @@ void main (void){
     while(1){
         while(RB6 == 1 && RB7 ==1){
             PORTE = 0X01;
-        if (PWM3>= 50){
-          PWM3 = 0;}
+
         ANALOGICOS(VALORAN);
 
         if (RB0 == 1 && RB0_FLAG == 0){
@@ -2779,8 +2793,7 @@ void main (void){
 
         while (RB6 == 0 && RB7 == 1){
             PORTE = 0X02;
-            if (PWM3>= 50){
-                PWM3 = 0;}
+
             if (RB4 == 0 && RB5 == 1){
                 POT0 = EEPROM_R(0);
                 CCPR1L = EEPROM_R(1);
@@ -2796,7 +2809,28 @@ void main (void){
                 CCPR1L = EEPROM_R(7);
                 CCPR2L = EEPROM_R(8);
         }
-        RB1_FLAG = RB1;
+            RB1_FLAG = RB1;
+        }
+
+        while (RB6 == 1 && RB7 == 0){
+            PORTE = 0X04;
+
+            switch(SEL){
+                case 97:
+                    PORTD = 0X01;
+                    POT0 =(1.1*(DATO-48)+5);
+                    break;
+                case 98:
+                    PORTD = 0X02;
+                    if(DATO>= 31 && DATO<= 120){
+                        CCPR2L = DATO-30;}
+                    break;
+                case 99:
+                    PORTD = 0X04;
+                    if(DATO>= 31 && DATO<= 150){
+                        CCPR1L = DATO-30;}
+                    break;
+            }
         }
     }
 
@@ -2807,7 +2841,7 @@ void setup(void){
     ANSELH = 0X00;
 
     TRISA = 0B00000111;
-    TRISC = 0X00;
+    TRISC = 0B10000000;
     TRISD = 0X00;
     TRISE = 0X00;
     TRISB = 0B11110011;
@@ -2825,8 +2859,8 @@ void setup(void){
     OSCCONbits.SCS = 1;
 
 
-    OPTION_REG = 0B01010000;
-    TMR0 = 231;
+    OPTION_REG = 0B01000000;
+    TMR0 = 206;
 
     WPUB = 0B11110011;
     IOCB = 0B11110011;
@@ -2858,6 +2892,22 @@ void setup(void){
     PIR1bits.ADIF = 0;
     INTCONbits.RBIE = 0;
     INTCONbits.RBIF = 0;
+    INTCONbits.PEIE = 1;
+    PIE1bits.RCIE = 1;
+    PIR1bits.RCIF = 0;
+
+    TXSTAbits.TXEN = 1;
+    TXSTAbits.SYNC = 0;
+    RCSTAbits.SPEN = 1;
+    TXSTAbits.TX9 = 0;
+
+    RCSTAbits.CREN = 1;
+    RCSTAbits.RX9 = 0;
+
+    BAUDCTLbits.BRG16 = 0;
+    SPBRG = 25;
+    SPBRGH = 1;
+    TXSTAbits.BRGH = 1;
 }
 
 
@@ -2865,7 +2915,7 @@ void ANALOGICOS(int VALORAN){
 
     switch(ADCON0bits.CHS){
         case 0:
-            POT0 = ((0.07058*VALORAN)+8);
+            POT0 = ((0.0380*VALORAN)+5);
             ADCON0bits.CHS = 1;
            _delay((unsigned long)((100)*(4000000/4000000.0)));
             ADCON0bits.GO = 1;

@@ -3,6 +3,7 @@
  * Author: GABRIEL FONG
  * PROYECTO FINAL
  * Created on May 10, 2021, 3:53 PM
+ * python -m PyQt5.uic.pyuic -x PROYECTO_BRAZO.ui -o PROYECTO_BRAZO.py
  */
 
 #include <stdio.h>
@@ -25,7 +26,7 @@
 #pragma config BOR4V = BOR40V   // Brown-out Reset Selection bit (Brown-out Reset set to 4.0V)
 #pragma config WRT = OFF        // Flash Program Memory Self Write Enable bits (Write protection off)
 
-#define _tmr0_value 231
+#define _tmr0_value 206
 #define _XTAL_FREQ 4000000
 #define SERVO1_1 0
 #define SERVO2_1 1
@@ -43,9 +44,11 @@ unsigned int POT0 = 0;
 unsigned int POT1 = 0;
 unsigned int POT2 = 0;
 int VALORAN = 0;
+int DATO;
 int RB0_FLAG = 1;
 int RB1_FLAG = 1;
 int SEL_G = 0; 
+int SEL;
 //-----------------------------PROTOTIPOS---------------------------------------
 void setup (void);
 void EEPROM_W(unsigned int dato, int add);
@@ -59,19 +62,31 @@ void __interrupt()isr(void){
         TMR0 = _tmr0_value;             //VALOR DE REINICIO
         PWM3++;                         //INCREMENTAMOS PWM3
         //SEÑAL DE PWM3 COMPARA CON LA VARIABLE Y EL VALOR MAPEADO DEL AN0
-        if  (PWM3 >= POT0){             
-         PORTCbits.RC3 = 0;
-         }
-        else     {
-         PORTCbits.RC3 = 1;
-         }
-        INTCONbits.T0IF = 0;            //LIMPIO LA BANDERA DE T0IF
+        if (PWM3>= 25){         //CONTROL DEL PERIODO DE PWM3
+          PWM3 = 0;}
+          if  (PWM3 >= POT0){             
+           PORTCbits.RC3 = 0;
+           }
+          else     {
+           PORTCbits.RC3 = 1;
+           }
+          INTCONbits.T0IF = 0;            //LIMPIO LA BANDERA DE T0IF
+            
+        
     }
+    
     if (ADIF == 1){
         VALORAN = ADRESH;               //CARGAMOS ADRESH A VALORAN
         PIR1bits.ADIF = 0;              //LIMPIAMOS LA BANDERA DEL ADC
     }
-    
+    if (PIR1bits.RCIF){
+        if (RCREG >= 97 && RCREG <= 99 ){
+                SEL = RCREG;  }
+        else {
+            DATO = RCREG;
+        }
+      //  RCIF = 0;
+    }
     ei();                           //POP
 }
 
@@ -80,8 +95,7 @@ void main (void){
     while(1){
         while(RB6 == 1 && RB7 ==1){
             PORTE = 0X01;
-        if (PWM3>= 50){         //CONTROL DEL PERIODO DE PWM3
-          PWM3 = 0;}
+       
         ANALOGICOS(VALORAN);    //FUNCION DE VALORES ANALOGICOS
         
         if (RB0 == 1 && RB0_FLAG == 0){//HASTA DEJAR DE SER PRESIONADO
@@ -111,8 +125,7 @@ void main (void){
         
         while (RB6 == 0 && RB7 == 1){
             PORTE = 0X02;
-            if (PWM3>= 50){         //CONTROL DEL PERIODO DE PWM3
-                PWM3 = 0;}
+            
             if (RB4 == 0 && RB5 == 1){
                 POT0 = EEPROM_R(SERVO1_1);
                 CCPR1L = EEPROM_R(SERVO2_1);
@@ -128,10 +141,31 @@ void main (void){
                 CCPR1L = EEPROM_R(SERVO2_3);
                 CCPR2L = EEPROM_R(SERVO3_3);
         }
-        RB1_FLAG = RB1;
+            RB1_FLAG = RB1;
+        }
+        
+        while (RB6 == 1 && RB7 == 0){
+            PORTE = 0X04;
+          
+            switch(SEL){
+                case 97:
+                    PORTD = 0X01;
+                    POT0 =(1.1*(DATO-48)+5);
+                    break;
+                case 98:
+                    PORTD = 0X02;
+                    if(DATO>= 31 && DATO<= 120){
+                        CCPR2L = DATO-30;}
+                    break;
+                case 99:
+                    PORTD = 0X04;
+                    if(DATO>= 31 && DATO<= 150){
+                        CCPR1L = DATO-30;}
+                    break;
+            }
         }
     }
-
+        
 }
 void setup(void){
     //CONFIGURACION DE PUERTOS
@@ -139,7 +173,7 @@ void setup(void){
     ANSELH = 0X00;
     
     TRISA = 0B00000111;          //RA0, RA1, RA2, RA3 INPUT
-    TRISC = 0X00;               //PORTC COMO OUTPUT
+    TRISC = 0B10000000;          //PORTC COMO OUTPUT, RC7 TX
     TRISD = 0X00;               //PORTD COMO OUTPUT
     TRISE = 0X00;               //PORTE COMO OUTPUT
     TRISB = 0B11110011;         //RB0, RB1, RB6, RB7 COMO INPUT 
@@ -157,7 +191,7 @@ void setup(void){
     OSCCONbits.SCS = 1;         //RELOJ INTERNO 
     
     //CONFIGURACION DEL TMR0
-    OPTION_REG = 0B01010000;    //RBPU HABILITADO, PSA (0) PRESCALER 1:16
+    OPTION_REG = 0B01000000;    //RBPU HABILITADO, PSA (0) PRESCALER 1:16
     TMR0 = _tmr0_value;         //TMR0 A 50 us
     //CONFIGURACION DEL IOC
     WPUB = 0B11110011;          //WEAK PULL UP ACTIVADO
@@ -190,6 +224,22 @@ void setup(void){
     PIR1bits.ADIF = 0;
     INTCONbits.RBIE = 0;        //DESHABILITAMOS LAS INTERRUPCIONES IOC
     INTCONbits.RBIF = 0;        //LIMPIAMOS LA BANDER DE IOC
+    INTCONbits.PEIE = 1;        //HABILITAMOS INTERRUPCIONES PERIFERICAS
+    PIE1bits.RCIE = 1;          //HABILITAMOS INTERRUPCION DE UART PARA LA INTERUPCION
+    PIR1bits.RCIF = 0;
+    //CONFIGURACION UART
+    TXSTAbits.TXEN = 1;         //SE HABILITA EL TX
+    TXSTAbits.SYNC = 0;         //LO COLOCAMOS DE MANERA ASINCRONA
+    RCSTAbits.SPEN = 1;         //TX COMO SALIDA
+    TXSTAbits.TX9 = 0;          //8 BITS
+
+    RCSTAbits.CREN = 1;         //SE HABILITA RC
+    RCSTAbits.RX9 = 0;          //8 bits
+    //VELOCIDAD
+    BAUDCTLbits.BRG16 = 0;      //PARA UTILIZAR LA FORMULA CON EL /64
+    SPBRG = 25;                  //VALOR MÁS CERCANO PARA LOS BAUDIOS
+    SPBRGH = 1;
+    TXSTAbits.BRGH = 1;
 }
 
 
@@ -197,7 +247,7 @@ void ANALOGICOS(int VALORAN){
      
     switch(ADCON0bits.CHS){
         case 0:
-            POT0 = ((0.07058*VALORAN)+8);    //MAPEO DEL SERVO 3, (8,26)
+            POT0 = ((0.0380*VALORAN)+5);    //MAPEO DEL SERVO 3, (5,16)
             ADCON0bits.CHS = 1;   //COLOCAMOS EL CANAL 1 PORTA1
            __delay_us(100);
             ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC*/
@@ -212,7 +262,7 @@ void ANALOGICOS(int VALORAN){
             break;
             
         case 2:
-            POT2 = ((0.349*VALORAN)+31);
+            POT2 = ((0.349*VALORAN)+31);    //(31,120)
             CCPR2L = POT2;
             ADCON0bits.CHS = 0;   //COLOCAMOS EL CANAL 3 PORTA3
            __delay_us(100);

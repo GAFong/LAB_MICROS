@@ -15,14 +15,28 @@ class interfaz (QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         # FUNCIONES DE BOTONES, SLIDERS, ETC.
         self.Garra.valueChanged.connect(self.serial_garra)
+        self.Brazo1.valueChanged.connect(self.serial_brazo1)
+        self.Brazo2.valueChanged.connect(self.serial_brazo2)
         threading.Thread(daemon=True, target=posiciones).start()
 
     def serial_garra(self):
         global ser
         #try:
-        ser.write(bytes.fromhex('61'))
-        ser.write(bytes.fromhex('0A'))
+        ser.write(bytes.fromhex('61')) #letra a
+    #    ser.write(bytes.fromhex('0A')) #enter
         ser.write(bytes.fromhex(hex(ord(str(self.Garra.value())))[2:]))
+    def serial_brazo1(self):
+        global ser
+        #try:
+        ser.write(bytes.fromhex('62')) #letra b
+        #ser.write(bytes.fromhex('0A')) #enter
+        ser.write(bytes.fromhex(hex(ord(str(self.Brazo1.value())))[2:]))
+    def serial_brazo2(self):
+        global ser
+        #try:
+        ser.write(bytes.fromhex('63')) #letra c
+        #ser.write(bytes.fromhex('0A')) #enter
+        ser.write(bytes.fromhex(hex(ord(str(self.Brazo2.value())))[2:]))
 
     def posicion_garra(self, angulo):
         print(angulo)

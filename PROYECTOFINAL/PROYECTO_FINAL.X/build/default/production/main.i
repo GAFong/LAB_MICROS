@@ -2831,8 +2831,7 @@ void main (void){
                     break;
                 case 99:
                     PORTD = 0X04;
-                    if(DATO>= 31 && DATO<= 150){
-                        CCPR1L = DATO-30;}
+                    CCPR1L = (9.88*(DATO-48)+31);
                     break;
             }
         }

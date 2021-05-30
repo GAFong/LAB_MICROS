@@ -43,6 +43,7 @@ int PWM3=0;
 unsigned int POT0 = 0;
 unsigned int POT1 = 0;
 unsigned int POT2 = 0;
+unsigned int POT3 = 0;
 int VALORAN = 0;
 int DATO;
 int RB0_FLAG = 1;
@@ -70,9 +71,13 @@ void __interrupt()isr(void){
           else     {
            PORTCbits.RC3 = 1;
            }
+        if  (PWM3 >= POT3){             
+           PORTCbits.RC0 = 0;
+           }
+          else     {
+           PORTCbits.RC0 = 1;
+           }
           INTCONbits.T0IF = 0;            //LIMPIO LA BANDERA DE T0IF
-            
-        
     }
     
     if (ADIF == 1){
@@ -154,8 +159,7 @@ void main (void){
                     break;
                 case 98:
                     PORTD = 0X02;
-                    if(DATO>= 31 && DATO<= 120){
-                        CCPR2L = DATO-30;}
+                    CCPR2L = (6.55*(DATO-48)+31);
                     break;
                 case 99:
                     PORTD = 0X04;
@@ -169,10 +173,10 @@ void main (void){
 }
 void setup(void){
     //CONFIGURACION DE PUERTOS
-    ANSEL = 0B00000111;               //RA0, RA1, RA2, RA3 ANALOGICO
+    ANSEL = 0B00001111;               //RA0, RA1, RA2, RA3 ANALOGICO
     ANSELH = 0X00;
     
-    TRISA = 0B00000111;          //RA0, RA1, RA2, RA3 INPUT
+    TRISA = 0B00001111;          //RA0, RA1, RA2, RA3 INPUT
     TRISC = 0B10000000;          //PORTC COMO OUTPUT, RC7 TX
     TRISD = 0X00;               //PORTD COMO OUTPUT
     TRISE = 0X00;               //PORTE COMO OUTPUT
@@ -254,7 +258,7 @@ void ANALOGICOS(int VALORAN){
             break;
             
         case 1:
-            POT1 = (((0.467*VALORAN)+31));
+            POT1 = (((0.47*VALORAN)+31));
             CCPR1L = POT1;
             ADCON0bits.CHS = 2;   //COLOCAMOS EL CANAL 2 PORTA2
             __delay_us(100);
@@ -262,13 +266,26 @@ void ANALOGICOS(int VALORAN){
             break;
             
         case 2:
-            POT2 = ((0.349*VALORAN)+31);    //(31,120)
+            POT2 = ((0.23*VALORAN)+31);    //(31,120)
             CCPR2L = POT2;
-            ADCON0bits.CHS = 0;   //COLOCAMOS EL CANAL 3 PORTA3
+            ADCON0bits.CHS = 3;   //COLOCAMOS EL CANAL 3 PORTA3
            __delay_us(100);
              ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC*/
             break;
-            
+        case 3:
+           if (VALORAN >= 52 && VALORAN<=179){    //MAPEO DEL SERVO 3, (5,16)
+               POT3 = 12;
+           }
+           else if (VALORAN >= 0 && VALORAN<=51){    //MAPEO DEL SERVO 3, (5,16)
+               POT3 = 11;
+           }
+           else if (VALORAN >= 180 && VALORAN<=255){    //MAPEO DEL SERVO 3, (5,16)
+               POT3 = 18;
+           }
+           ADCON0bits.CHS = 0;   //COLOCAMOS EL CANAL 1 PORTA1
+           __delay_us(100);
+           ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC*/
+           break;
     }
 }
 

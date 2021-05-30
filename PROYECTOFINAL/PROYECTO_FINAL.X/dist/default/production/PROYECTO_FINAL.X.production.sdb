@@ -17,17 +17,17 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"59 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
+"60 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
-"93
+"98
 [v _main main `(v  1 e 1 0 ]
-"170
+"174
 [v _setup setup `(v  1 e 1 0 ]
-"246
+"250
 [v _ANALOGICOS ANALOGICOS `(v  1 e 1 0 ]
-"275
+"292
 [v _EEPROM_W EEPROM_W `(v  1 e 1 0 ]
-"291
+"308
 [v _EEPROM_R EEPROM_R `(ui  1 e 2 0 ]
 "59 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -298,48 +298,50 @@
 "45
 [v _POT2 POT2 `ui  1 e 2 0 ]
 "46
-[v _VALORAN VALORAN `i  1 e 2 0 ]
+[v _POT3 POT3 `ui  1 e 2 0 ]
 "47
-[v _DATO DATO `i  1 e 2 0 ]
+[v _VALORAN VALORAN `i  1 e 2 0 ]
 "48
-[v _RB0_FLAG RB0_FLAG `i  1 e 2 0 ]
+[v _DATO DATO `i  1 e 2 0 ]
 "49
-[v _RB1_FLAG RB1_FLAG `i  1 e 2 0 ]
+[v _RB0_FLAG RB0_FLAG `i  1 e 2 0 ]
 "50
-[v _SEL_G SEL_G `i  1 e 2 0 ]
+[v _RB1_FLAG RB1_FLAG `i  1 e 2 0 ]
 "51
+[v _SEL_G SEL_G `i  1 e 2 0 ]
+"52
 [v _SEL SEL `i  1 e 2 0 ]
-"93
+"98
 [v _main main `(v  1 e 1 0 ]
 {
-"169
+"173
 } 0
-"170
+"174
 [v _setup setup `(v  1 e 1 0 ]
 {
-"243
+"247
 } 0
-"275
+"292
 [v _EEPROM_W EEPROM_W `(v  1 e 1 0 ]
 {
 [v EEPROM_W@dato dato `ui  1 p 2 0 ]
 [v EEPROM_W@add add `i  1 p 2 2 ]
-"290
+"307
 } 0
-"291
+"308
 [v _EEPROM_R EEPROM_R `(ui  1 e 2 0 ]
 {
-"295
+"312
 [v EEPROM_R@dato dato `ui  1 a 2 4 ]
-"291
+"308
 [v EEPROM_R@add add `ui  1 p 2 0 ]
-"297
+"314
 } 0
-"246
+"250
 [v _ANALOGICOS ANALOGICOS `(v  1 e 1 0 ]
 {
 [v ANALOGICOS@VALORAN VALORAN `i  1 p 2 71 ]
-"273
+"290
 } 0
 "10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -369,17 +371,17 @@
 "8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S820 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S821 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S825 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S828 . 4 `l 1 i 4 0 `d 1 f 4 0 `S820 1 fAsBytes 4 0 `S825 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S828  1 a 4 34 ]
+[s S826 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S829 . 4 `l 1 i 4 0 `d 1 f 4 0 `S821 1 fAsBytes 4 0 `S826 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S829  1 a 4 34 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 29 ]
-[s S897 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S898 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S900 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S897 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S900  1 a 2 38 ]
+[u S901 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S898 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S901  1 a 2 38 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 33 ]
 "11
@@ -421,8 +423,8 @@
 [v ___fladd@a a `d  1 p 4 44 ]
 "237
 } 0
-"59 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
+"60 C:\Users\DELL\Documents\TERCER_AÑO\5_SEMESTRE\MICROS\LAB\LAB_MICROS\PROYECTOFINAL\PROYECTO_FINAL.X\main.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"91
+"96
 } 0

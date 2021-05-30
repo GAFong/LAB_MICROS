@@ -2711,6 +2711,7 @@ int PWM3=0;
 unsigned int POT0 = 0;
 unsigned int POT1 = 0;
 unsigned int POT2 = 0;
+unsigned int POT3 = 0;
 int VALORAN = 0;
 int DATO;
 int RB0_FLAG = 1;
@@ -2738,9 +2739,13 @@ void __attribute__((picinterrupt((""))))isr(void){
           else {
            PORTCbits.RC3 = 1;
            }
+        if (PWM3 >= POT3){
+           PORTCbits.RC0 = 0;
+           }
+          else {
+           PORTCbits.RC0 = 1;
+           }
           INTCONbits.T0IF = 0;
-
-
     }
 
     if (ADIF == 1){
@@ -2822,8 +2827,7 @@ void main (void){
                     break;
                 case 98:
                     PORTD = 0X02;
-                    if(DATO>= 31 && DATO<= 120){
-                        CCPR2L = DATO-30;}
+                    CCPR2L = (6.55*(DATO-48)+31);
                     break;
                 case 99:
                     PORTD = 0X04;
@@ -2837,10 +2841,10 @@ void main (void){
 }
 void setup(void){
 
-    ANSEL = 0B00000111;
+    ANSEL = 0B00001111;
     ANSELH = 0X00;
 
-    TRISA = 0B00000111;
+    TRISA = 0B00001111;
     TRISC = 0B10000000;
     TRISD = 0X00;
     TRISE = 0X00;
@@ -2922,7 +2926,7 @@ void ANALOGICOS(int VALORAN){
             break;
 
         case 1:
-            POT1 = (((0.467*VALORAN)+31));
+            POT1 = (((0.47*VALORAN)+31));
             CCPR1L = POT1;
             ADCON0bits.CHS = 2;
             _delay((unsigned long)((100)*(4000000/4000000.0)));
@@ -2930,13 +2934,26 @@ void ANALOGICOS(int VALORAN){
             break;
 
         case 2:
-            POT2 = ((0.349*VALORAN)+31);
+            POT2 = ((0.23*VALORAN)+31);
             CCPR2L = POT2;
-            ADCON0bits.CHS = 0;
+            ADCON0bits.CHS = 3;
            _delay((unsigned long)((100)*(4000000/4000000.0)));
              ADCON0bits.GO = 1;
             break;
-
+        case 3:
+           if (VALORAN >= 52 && VALORAN<=179){
+               POT3 = 12;
+           }
+           else if (VALORAN >= 0 && VALORAN<=51){
+               POT3 = 11;
+           }
+           else if (VALORAN >= 180 && VALORAN<=255){
+               POT3 = 18;
+           }
+           ADCON0bits.CHS = 0;
+           _delay((unsigned long)((100)*(4000000/4000000.0)));
+           ADCON0bits.GO = 1;
+           break;
     }
 }
 

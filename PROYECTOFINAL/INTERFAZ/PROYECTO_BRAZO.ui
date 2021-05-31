@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="GUARDAR">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>350</y>
+      <x>330</x>
+      <y>380</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -27,7 +27,7 @@
      <string>GUARDAR</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>50</x>
@@ -70,17 +70,33 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QSlider" name="Base">
-       <property name="maximum">
-        <number>9</number>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-      </widget>
-     </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="RotD">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>330</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>--&gt;</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="RotI">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>330</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;--</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

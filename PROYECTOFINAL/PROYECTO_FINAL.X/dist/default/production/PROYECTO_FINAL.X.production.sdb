@@ -21,13 +21,13 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "98
 [v _main main `(v  1 e 1 0 ]
-"173
+"182
 [v _setup setup `(v  1 e 1 0 ]
-"249
+"258
 [v _ANALOGICOS ANALOGICOS `(v  1 e 1 0 ]
-"291
+"301
 [v _EEPROM_W EEPROM_W `(v  1 e 1 0 ]
-"307
+"317
 [v _EEPROM_R EEPROM_R `(ui  1 e 2 0 ]
 "59 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -314,34 +314,34 @@
 "98
 [v _main main `(v  1 e 1 0 ]
 {
-"172
+"181
 } 0
-"173
+"182
 [v _setup setup `(v  1 e 1 0 ]
 {
-"246
+"255
 } 0
-"291
+"301
 [v _EEPROM_W EEPROM_W `(v  1 e 1 0 ]
 {
 [v EEPROM_W@dato dato `ui  1 p 2 0 ]
 [v EEPROM_W@add add `i  1 p 2 2 ]
-"306
+"316
 } 0
-"307
+"317
 [v _EEPROM_R EEPROM_R `(ui  1 e 2 0 ]
 {
-"311
+"321
 [v EEPROM_R@dato dato `ui  1 a 2 4 ]
-"307
+"317
 [v EEPROM_R@add add `ui  1 p 2 0 ]
-"313
+"323
 } 0
-"249
+"258
 [v _ANALOGICOS ANALOGICOS `(v  1 e 1 0 ]
 {
 [v ANALOGICOS@VALORAN VALORAN `i  1 p 2 71 ]
-"289
+"299
 } 0
 "10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]

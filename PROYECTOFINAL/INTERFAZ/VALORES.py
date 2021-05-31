@@ -17,6 +17,8 @@ class interfaz (QtWidgets.QMainWindow, Ui_MainWindow):
         self.Garra.valueChanged.connect(self.serial_garra)
         self.Brazo1.valueChanged.connect(self.serial_brazo1)
         self.Brazo2.valueChanged.connect(self.serial_brazo2)
+        self.RotD.pressed.connect(self.serial_RotD)
+        self.RotI.pressed.connect(self.serial_RotI)
         threading.Thread(daemon=True, target=posiciones).start()
 
     def serial_garra(self):
@@ -37,6 +39,14 @@ class interfaz (QtWidgets.QMainWindow, Ui_MainWindow):
         ser.write(bytes.fromhex('63')) #letra c
         #ser.write(bytes.fromhex('0A')) #enter
         ser.write(bytes.fromhex(hex(ord(str(self.Brazo2.value())))[2:]))
+    def serial_RotD(self):
+        global ser
+        #try:
+        ser.write(bytes.fromhex('64')) #letra d
+    def serial_RotI(self):
+        global ser
+        #try:
+        ser.write(bytes.fromhex('65')) #letra e
 
     def posicion_garra(self, angulo):
         print(angulo)

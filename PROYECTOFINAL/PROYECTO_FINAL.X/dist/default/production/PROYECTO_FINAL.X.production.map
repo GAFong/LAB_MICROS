@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\PROYECTO_FINAL.X.production.sym \
   --cmf=dist/default/production\PROYECTO_FINAL.X.production.cmf -z -Q16F887 \
-  -oC:\Users\DELL\AppData\Local\Temp\she8.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\DELL\AppData\Local\Temp\slbc.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/PROYECTO_FINAL.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK \
   -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\DELL\AppData\Local\Temp\she8.o \
+  -pfunctab=ENTRY -k C:\Users\DELL\AppData\Local\Temp\slbc.o \
   dist/default/production\PROYECTO_FINAL.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\DELL\AppData\Local\Temp\she8.o
+C:\Users\DELL\AppData\Local\Temp\slbc.o
                 end_init                             10       10        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
@@ -36,17 +36,17 @@ dist/default/production\PROYECTO_FINAL.X.production.o
                 cinit                                13       13       32        8       0
                 intentry                              4        4        C        8       0
                 config                             2007     2007        2        0       4
-                text10                              729      729       7F        8       0
+                text10                              742      742       7F        8       0
                 text9                               D78      D78      288     1AF0       0
-                text8                               7A8      7A8       29        8       0
+                text8                               7C1      7C1       29        8       0
                 text7                                45       45      361        8       0
                 text6                               B3E      B3E       7C     167C       0
-                text5                               66D      66D       BC        8       0
+                text5                               686      686       BC        8       0
                 text4                               BBA      BBA      1BE     1774       0
-                text3                               AAC      AAC       1A     1558       0
-                text2                               7D1      7D1       22        8       0
-                text1                               AC6      AC6       78     158C       0
-                maintext                            3A6      3A6      2C7        8       0
+                text3                               A89      A89       1A     1512       0
+                text2                               AA3      AA3       22     1546       0
+                text1                               AC5      AC5       79     158A       0
+                maintext                            3A6      3A6      2E0        8       0
                 cstackBANK0                          20       20       49       20       1
                 cstackCOMMON                         70       70        5       70       1
                 cstackBANK1                          A8       A8        5       A0       1
@@ -54,7 +54,7 @@ dist/default/production\PROYECTO_FINAL.X.production.o
                 bssBANK1                             A0       A0        8       A0       1
                 bssBANK0                             69       69        6       20       1
                 bssCOMMON                            75       75        4       70       1
-                idataBANK1                          7F3      7F3        4        8       0
+                idataBANK1                          7EA      7EA        4        8       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
@@ -64,18 +64,18 @@ TOTAL           Name                               Link     Load   Length     Sp
                 cinit                                13       13       32         0
                 intentry                              4        4        C         0
                 reset_vec                             0        0        3         0
-                text10                              729      729       7F         0
+                text10                              742      742       7F         0
                 text9                               D78      D78      288         0
-                text8                               7A8      7A8       29         0
+                text8                               7C1      7C1       29         0
                 text7                                45       45      361         0
                 text6                               B3E      B3E       7C         0
-                text5                               66D      66D       BC         0
+                text5                               686      686       BC         0
                 text4                               BBA      BBA      1BE         0
-                text3                               AAC      AAC       1A         0
-                text2                               7D1      7D1       22         0
-                text1                               AC6      AC6       78         0
-                maintext                            3A6      3A6      2C7         0
-                idataBANK1                          7F3      7F3        4         0
+                text3                               A89      A89       1A         0
+                text2                               AA3      AA3       22         0
+                text1                               AC5      AC5       79         0
+                maintext                            3A6      3A6      2E0         0
+                idataBANK1                          7EA      7EA        4         0
 
         CLASS   STRCODE        
 
@@ -127,12 +127,13 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class     Delta
 
                 reset_vec                      000000  000003  000003         0       0  CODE        2
-                intentry                       000004  0007F3  0007F7         8       0  CODE        2
+                intentry                       000004  0007EA  0007EE         8       0  CODE        2
                 cstackBANK0                    000020  00004F  00006F        20       1  BANK0       1
                 cstackCOMMON                   000070  000009  000079        70       1  COMMON      1
                 bssBANK1                       0000A0  000011  0000B1        A0       1  BANK1       1
-                text3                          000AAC  00001A  000AC6      1558       0  CODE        2
-                text1                          000AC6  000078  000B3E      158C       0  CODE        2
+                text3                          000A89  00001A  000AA3      1512       0  CODE        2
+                text2                          000AA3  000022  000AC5      1546       0  CODE        2
+                text1                          000AC5  000079  000B3E      158A       0  CODE        2
                 text6                          000B3E  00007C  000BBA      167C       0  CODE        2
                 text4                          000BBA  0001BE  000D78      1774       0  CODE        2
                 text9                          000D78  000288  001000      1AF0       0  CODE        2
@@ -146,15 +147,15 @@ UNUSED ADDRESS RANGES
         BANK2            0110-016F             60           1
         BANK3            0190-01EF             60           1
         CODE             0003-0003              1           2
-                         07F7-0AAB              9
+                         07EE-0A88             12
                          1000-1FFF            800
         COMMON           0079-007D              5           1
         CONST            0003-0003              1           2
-                         07F7-0AAB            100
+                         07EE-0A88            100
                          1000-1FFF            100
         EEDATA           2100-21FF            100           2
         ENTRY            0003-0003              1           2
-                         07F7-0AAB            100
+                         07EE-0A88            100
                          1000-1FFF            100
         IDLOC            2000-2003              4           2
         RAM              006F-006F              1           1
@@ -167,10 +168,10 @@ UNUSED ADDRESS RANGES
         SFR3             0180-018F             10           1
         STACK            0110-016F             60           1
         STRCODE          0003-0003              1           2
-                         07F7-0AAB            2B5
+                         07EE-0A88            29B
                          1000-1FFF           1000
         STRING           0003-0003              1           2
-                         07F7-0AAB            100
+                         07EE-0A88            100
                          1000-1FFF            100
 
                                   Symbol Table
@@ -204,8 +205,8 @@ _EECON1bits              (abs)        018C
 _EECON2                  (abs)        018D
 _EEDAT                   (abs)        010C
 _EEDATA                  (abs)        010C
-_EEPROM_R                text3        0AAC
-_EEPROM_W                text2        07D1
+_EEPROM_R                text3        0A89
+_EEPROM_W                text2        0AA3
 _INTCONbits              (abs)        000B
 _IOCB                    (abs)        0096
 _OPTION_REG              (abs)        0081
@@ -332,7 +333,7 @@ __S0                     (abs)        1000
 __S1                     (abs)        00B1
 __S2                     (abs)        0000
 __S3                     (abs)        0000
-__Umul8_16               text8        07A8
+__Umul8_16               text8        07C1
 __Umul8_16@multiplicand  cstackBANK0  0020
 __Umul8_16@multiplier    cstackBANK0  0028
 __Umul8_16@product       cstackBANK0  0024
@@ -362,22 +363,22 @@ ___latbits               (abs)        0002
 ___sp                    stack        0000
 ___stackhi               (abs)        0000
 ___stacklo               (abs)        0000
-___xxtofl                text5        066D
+___xxtofl                text5        0686
 ___xxtofl@arg            cstackBANK0  002A
 ___xxtofl@exp            cstackBANK0  0029
 ___xxtofl@sign           cstackBANK0  0028
 ___xxtofl@val            cstackBANK0  0020
 __end_of_ANALOGICOS      text4        0D78
-__end_of_EEPROM_R        text3        0AC6
-__end_of_EEPROM_W        text2        07F3
-__end_of__Umul8_16       text8        07D1
+__end_of_EEPROM_R        text3        0AA3
+__end_of_EEPROM_W        text2        0AC5
+__end_of__Umul8_16       text8        07EA
 __end_of___fladd         text9        1000
 __end_of___flmul         text7        03A6
 __end_of___fltol         text6        0BBA
-__end_of___xxtofl        text5        0729
+__end_of___xxtofl        text5        0742
 __end_of__initialization cinit        0041
-__end_of_isr             text10       07A8
-__end_of_main            maintext     066D
+__end_of_isr             text10       07C1
+__end_of_main            maintext     0686
 __end_of_setup           text1        0B3E
 __initialization         cinit        0013
 __pbssBANK0              bssBANK0     0069
@@ -387,18 +388,18 @@ __pcstackBANK0           cstackBANK0  0020
 __pcstackBANK1           cstackBANK1  00A8
 __pcstackCOMMON          cstackCOMMON 0070
 __pdataBANK1             dataBANK1    00AD
-__pidataBANK1            idataBANK1   07F3
+__pidataBANK1            idataBANK1   07EA
 __pintentry              intentry     0004
 __pmaintext              maintext     03A6
-__ptext1                 text1        0AC6
-__ptext10                text10       0729
-__ptext2                 text2        07D1
-__ptext3                 text3        0AAC
+__ptext1                 text1        0AC5
+__ptext10                text10       0742
+__ptext2                 text2        0AA3
+__ptext3                 text3        0A89
 __ptext4                 text4        0BBA
-__ptext5                 text5        066D
+__ptext5                 text5        0686
 __ptext6                 text6        0B3E
 __ptext7                 text7        0045
-__ptext8                 text8        07A8
+__ptext8                 text8        07C1
 __ptext9                 text9        0D78
 __size_of_ANALOGICOS     (abs)        0000
 __size_of_EEPROM_R       (abs)        0000
@@ -411,9 +412,9 @@ __size_of___xxtofl       (abs)        0000
 __size_of_isr            (abs)        0000
 __size_of_main           (abs)        0000
 __size_of_setup          (abs)        0000
-_isr                     text10       0729
+_isr                     text10       0742
 _main                    maintext     03A6
-_setup                   text1        0AC6
+_setup                   text1        0AC5
 btemp                    (abs)        007E
 end_of_initialization    cinit        0041
 interrupt_function       intentry     0004
@@ -470,7 +471,7 @@ Total ram usage:        2 bytes
 
  *************** function _setup *****************
  Defined at:
-		line 173 in file "main.c"
+		line 182 in file "main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -500,7 +501,7 @@ Total ram usage:        1 bytes
 
  *************** function _EEPROM_W *****************
  Defined at:
-		line 291 in file "main.c"
+		line 301 in file "main.c"
  Parameters:    Size  Location     Type
   dato            2    0[BANK0 ] unsigned int 
   add             2    2[BANK0 ] int 
@@ -531,7 +532,7 @@ Total ram usage:        4 bytes
 
  *************** function _EEPROM_R *****************
  Defined at:
-		line 307 in file "main.c"
+		line 317 in file "main.c"
  Parameters:    Size  Location     Type
   add             2    0[BANK0 ] unsigned int 
  Auto vars:     Size  Location     Type
@@ -561,7 +562,7 @@ Total ram usage:        6 bytes
 
  *************** function _ANALOGICOS *****************
  Defined at:
-		line 249 in file "main.c"
+		line 258 in file "main.c"
  Parameters:    Size  Location     Type
   VALORAN         2   71[BANK0 ] int 
  Auto vars:     Size  Location     Type
@@ -802,7 +803,7 @@ C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcmul.c
 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcmul.c estimated size: 865
 
 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8_16.c
-		__Umul8_16     		CODE           	07A8	0000	41
+		__Umul8_16     		CODE           	07C1	0000	41
 
 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8_16.c estimated size: 41
 
@@ -822,17 +823,17 @@ C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\fltol.c
 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\fltol.c estimated size: 124
 
 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\xxtofl.c
-		___xxtofl      		CODE           	066D	0000	188
+		___xxtofl      		CODE           	0686	0000	188
 
 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\xxtofl.c estimated size: 188
 
 main.c
 		_ANALOGICOS    		CODE           	0BBA	0000	446
-		_EEPROM_R      		CODE           	0AAC	0000	26
-		_EEPROM_W      		CODE           	07D1	0000	34
-		_main          		CODE           	03A6	0000	711
-		_isr           		CODE           	0729	0000	127
-		_setup         		CODE           	0AC6	0000	120
+		_EEPROM_R      		CODE           	0A89	0000	26
+		_EEPROM_W      		CODE           	0AA3	0000	34
+		_main          		CODE           	03A6	0000	736
+		_isr           		CODE           	0742	0000	127
+		_setup         		CODE           	0AC5	0000	121
 
-main.c estimated size: 1464
+main.c estimated size: 1490
 

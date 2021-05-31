@@ -2753,7 +2753,7 @@ void __attribute__((picinterrupt((""))))isr(void){
         PIR1bits.ADIF = 0;
     }
     if (PIR1bits.RCIF){
-        if (RCREG >= 97 && RCREG <= 99 ){
+        if (RCREG >= 97 && RCREG <= 101 ){
                 SEL = RCREG; }
         else {
             DATO = RCREG;
@@ -2820,6 +2820,7 @@ void main (void){
         while (RB6 == 1 && RB7 == 0){
             PORTE = 0X04;
 
+            PORTD =0X00;
             switch(SEL){
                 case 97:
                     PORTD = 0X01;
@@ -2830,8 +2831,16 @@ void main (void){
                     CCPR2L = (6.55*(DATO-48)+31);
                     break;
                 case 99:
-                    PORTD = 0X04;
+                    PORTD = 0X03;
                     CCPR1L = (9.88*(DATO-48)+31);
+                    break;
+                case 100:
+                    POT3 = 15;
+                    PORTD = 0X04;
+                    break;
+                case 101:
+                    POT3 = 10;
+                    PORTD = 0X05;
                     break;
             }
         }
@@ -2840,14 +2849,14 @@ void main (void){
 }
 void setup(void){
 
-    ANSEL = 0B00001111;
-    ANSELH = 0X00;
+    ANSEL = 0B00000111;
+    ANSELH = 0X01;
 
     TRISA = 0B00001111;
     TRISC = 0B10000000;
     TRISD = 0X00;
     TRISE = 0X00;
-    TRISB = 0B11110011;
+    TRISB = 0B11110111;
 
     PORTA = 0X00;
     PORTB = 0X00;
@@ -2935,20 +2944,21 @@ void ANALOGICOS(int VALORAN){
         case 2:
             POT2 = ((0.23*VALORAN)+31);
             CCPR2L = POT2;
-            ADCON0bits.CHS = 3;
+            ADCON0bits.CHS = 8;
            _delay((unsigned long)((100)*(4000000/4000000.0)));
              ADCON0bits.GO = 1;
             break;
-        case 3:
+        case 8:
            if (VALORAN >= 52 && VALORAN<=179){
                POT3 = 12;
            }
            else if (VALORAN >= 0 && VALORAN<=51){
-               POT3 = 11;
+               POT3 = 10;
            }
            else if (VALORAN >= 180 && VALORAN<=255){
-               POT3 = 18;
+               POT3 = 15;
            }
+
            ADCON0bits.CHS = 0;
            _delay((unsigned long)((100)*(4000000/4000000.0)));
            ADCON0bits.GO = 1;

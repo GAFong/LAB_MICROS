@@ -2718,11 +2718,15 @@ int RB0_FLAG = 1;
 int RB1_FLAG = 1;
 int SEL_G = 0;
 int SEL;
+int FLAG_TX = 0;
+int POS_TX = 0;
 
 void setup (void);
 void EEPROM_W(unsigned int dato, int add);
 unsigned int EEPROM_R(unsigned int add);
 void ANALOGICOS(int VALORAN);
+unsigned char MANDAR (void);
+void GUARDAR(unsigned int POT0,unsigned int POT1,unsigned int POT2,unsigned int POT3);
 
 
 void __attribute__((picinterrupt((""))))isr(void){
@@ -2752,6 +2756,7 @@ void __attribute__((picinterrupt((""))))isr(void){
         VALORAN = ADRESH;
         PIR1bits.ADIF = 0;
     }
+# 102 "main.c"
     if (PIR1bits.RCIF){
         if (RCREG >= 97 && RCREG <= 101 ){
                 SEL = RCREG; }
@@ -2771,28 +2776,14 @@ void main (void){
 
         ANALOGICOS(VALORAN);
 
+
+
+
+
         if (RB0 == 1 && RB0_FLAG == 0){
-            switch (SEL_G){
-                case 0:
-                    EEPROM_W(POT0, 0);
-                    EEPROM_W(POT1, 1);
-                    EEPROM_W(POT2, 2);
-                    SEL_G = 1;
-                    break;
-                case 1:
-                    EEPROM_W(POT0, 3);
-                    EEPROM_W(POT1, 4);
-                    EEPROM_W(POT2, 5);
-                    SEL_G = 2;
-                    break;
-                case 2:
-                    EEPROM_W(POT0, 6);
-                    EEPROM_W(POT1, 7);
-                    EEPROM_W(POT2, 8);
-                    SEL_G = 0;
-                    break;
-            }
+            GUARDAR(POT0, POT1, POT2, POT3);
         }
+
         RB0_FLAG = RB0;
         }
 
@@ -2820,29 +2811,46 @@ void main (void){
         while (RB6 == 1 && RB7 == 0){
             PORTE = 0X04;
 
-            PORTD =0X00;
+
             switch(SEL){
+                case 96:
+                    break;
                 case 97:
                     PORTD = 0X01;
                     POT0 =(1.1*(DATO-48)+5);
                     break;
                 case 98:
                     PORTD = 0X02;
-                    CCPR2L = (6.55*(DATO-48)+31);
+                    POT2 = (6.55*(DATO-48)+31);
+                    CCPR2L = POT2;
                     break;
                 case 99:
                     PORTD = 0X03;
-                    CCPR1L = (9.88*(DATO-48)+31);
+                    POT1 = (8*(DATO-48)+75);
+                    CCPR1L = POT1;
                     break;
                 case 100:
-                    POT3 = 15;
+
                     PORTD = 0X04;
+
+                    switch (DATO - 48){
+                        case 0:
+                            POT3 = 9;
+                            break;
+                        case 1:
+                            POT3 = 12;
+                            break;
+                        case 2:
+                            POT3 = 15;
+                            break;
+                    }
                     break;
                 case 101:
-                    POT3 = 10;
-                    PORTD = 0X05;
+                    GUARDAR(POT0, POT1, POT2, POT3);
+                    SEL = 96;
                     break;
-            }
+                    }
+
         }
     }
 
@@ -2850,13 +2858,13 @@ void main (void){
 void setup(void){
 
     ANSEL = 0B00000111;
-    ANSELH = 0X01;
+    ANSELH = 0X02;
 
     TRISA = 0B00001111;
     TRISC = 0B10000000;
     TRISD = 0X00;
     TRISE = 0X00;
-    TRISB = 0B11110111;
+    TRISB = 0B11111111;
 
     PORTA = 0X00;
     PORTB = 0X00;
@@ -2873,7 +2881,7 @@ void setup(void){
 
     OPTION_REG = 0B01000000;
     TMR0 = 206;
-
+# 234 "main.c"
     WPUB = 0B11110011;
     IOCB = 0B11110011;
 
@@ -2922,6 +2930,28 @@ void setup(void){
     TXSTAbits.BRGH = 1;
 }
 
+void GUARDAR(unsigned int POT0,unsigned int POT1,unsigned int POT2,unsigned int POT3){
+    switch (SEL_G){
+                case 0:
+                    EEPROM_W(POT0, 0);
+                    EEPROM_W(POT1, 1);
+                    EEPROM_W(POT2, 2);
+                    SEL_G = 1;
+                    break;
+                case 1:
+                    EEPROM_W(POT0, 3);
+                    EEPROM_W(POT1, 4);
+                    EEPROM_W(POT2, 5);
+                    SEL_G = 2;
+                    break;
+                case 2:
+                    EEPROM_W(POT0, 6);
+                    EEPROM_W(POT1, 7);
+                    EEPROM_W(POT2, 8);
+                    SEL_G = 0;
+                    break;
+            }
+}
 
 void ANALOGICOS(int VALORAN){
 
@@ -2934,7 +2964,7 @@ void ANALOGICOS(int VALORAN){
             break;
 
         case 1:
-            POT1 = (((0.47*VALORAN)+31));
+            POT1 = (((0.254*VALORAN)+75));
             CCPR1L = POT1;
             ADCON0bits.CHS = 2;
             _delay((unsigned long)((100)*(4000000/4000000.0)));
@@ -2942,13 +2972,13 @@ void ANALOGICOS(int VALORAN){
             break;
 
         case 2:
-            POT2 = ((0.23*VALORAN)+31);
+            POT2 = ((0.23*VALORAN)+35);
             CCPR2L = POT2;
-            ADCON0bits.CHS = 8;
+            ADCON0bits.CHS = 9;
            _delay((unsigned long)((100)*(4000000/4000000.0)));
              ADCON0bits.GO = 1;
             break;
-        case 8:
+        case 9:
            if (VALORAN >= 52 && VALORAN<=179){
                POT3 = 12;
            }
@@ -2988,4 +3018,18 @@ unsigned int EEPROM_R(unsigned int add){
     EECON1bits.RD = 1;
     unsigned int dato = EEDATA;
     return dato;
+}
+unsigned char MANDAR (void){
+    switch (POS_TX){
+        case 0:
+            POS_TX = 1;
+            return 0x36;
+            break;
+
+        case 1:
+            POS_TX = 0;
+            return 0x0A;
+            break;
+
+    }
 }

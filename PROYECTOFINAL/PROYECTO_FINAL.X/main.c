@@ -50,11 +50,15 @@ int RB0_FLAG = 1;
 int RB1_FLAG = 1;
 int SEL_G = 0; 
 int SEL;
+int FLAG_TX = 0;
+int POS_TX = 0;
 //-----------------------------PROTOTIPOS---------------------------------------
 void setup (void);
 void EEPROM_W(unsigned int dato, int add);
 unsigned int EEPROM_R(unsigned int add);
 void ANALOGICOS(int VALORAN);
+unsigned char MANDAR (void);
+void GUARDAR(unsigned int POT0,unsigned int POT1,unsigned int POT2,unsigned int POT3);
 
 //---------------------------INTERRUPCION--------------------------------------
 void __interrupt()isr(void){
@@ -84,6 +88,17 @@ void __interrupt()isr(void){
         VALORAN = ADRESH;               //CARGAMOS ADRESH A VALORAN
         PIR1bits.ADIF = 0;              //LIMPIAMOS LA BANDERA DEL ADC
     }
+   /* if (PIR1bits.TMR1IF == 1){
+        TMR1H	 = 0x3C;
+        TMR1L	 = 0xB0;
+        FLAG_TX = 1;
+        TXREG = MANDAR();
+        PIR1bits.TMR1IF =0;
+    }*/
+   /* if (PIR1bits.TXIF == 1){
+        TXREG = MANDAR();
+        PIE1bits.TXIE = 0;
+    }*/
     if (PIR1bits.RCIF){
         if (RCREG >= 97 && RCREG <= 101 ){
                 SEL = RCREG;  }
@@ -102,29 +117,15 @@ void main (void){
             PORTE = 0X01;
        
         ANALOGICOS(VALORAN);    //FUNCION DE VALORES ANALOGICOS
-        
+     /*   if (FLAG_TX == 1){
+            PIE1bits.TXIE = 1;
+            FLAG_TX = 0;
+        }*/
+       // PIE1bits.TXIE = 1;
         if (RB0 == 1 && RB0_FLAG == 0){//HASTA DEJAR DE SER PRESIONADO
-            switch (SEL_G){
-                case 0:
-                    EEPROM_W(POT0, SERVO1_1);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO1
-                    EEPROM_W(POT1, SERVO2_1);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO2
-                    EEPROM_W(POT2, SERVO3_1);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO3
-                    SEL_G = 1;
-                    break;
-                case 1:
-                    EEPROM_W(POT0, SERVO1_2);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO1
-                    EEPROM_W(POT1, SERVO2_2);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO2
-                    EEPROM_W(POT2, SERVO3_2);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO3
-                    SEL_G = 2;
-                    break;
-                case 2:
-                    EEPROM_W(POT0, SERVO1_3);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO1
-                    EEPROM_W(POT1, SERVO2_3);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO2
-                    EEPROM_W(POT2, SERVO3_3);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO3
-                    SEL_G = 0;
-                    break;
-            }
+            GUARDAR(POT0, POT1, POT2, POT3);
         }
+        
         RB0_FLAG = RB0;
         }
         
@@ -152,29 +153,46 @@ void main (void){
         while (RB6 == 1 && RB7 == 0){
             PORTE = 0X04;
             //POT3 = 12;
-            PORTD =0X00;
+            
             switch(SEL){
+                case 96:
+                    break;
                 case 97:
                     PORTD = 0X01;
                     POT0 =(1.1*(DATO-48)+5);
                     break;
                 case 98:
                     PORTD = 0X02;
-                    CCPR2L = (6.55*(DATO-48)+31);
+                    POT2 = (6.55*(DATO-48)+31);
+                    CCPR2L = POT2;
                     break;
                 case 99:
                     PORTD = 0X03;
-                    CCPR1L = (9.88*(DATO-48)+31);
+                    POT1 = (8*(DATO-48)+75);
+                    CCPR1L = POT1;
                     break;
                 case 100:
-                    POT3 = 15;
+                   // POT3 = 15;
                     PORTD = 0X04;
+                
+                    switch (DATO - 48){
+                        case 0:
+                            POT3 = 9;
+                            break;
+                        case 1:
+                            POT3 = 12;
+                            break;
+                        case 2:
+                            POT3 = 15;
+                            break;            
+                    }
                     break;
                 case 101:
-                    POT3 = 10;
-                    PORTD = 0X05;
+                    GUARDAR(POT0, POT1, POT2, POT3);
+                    SEL = 96;
                     break;
-            }
+                    }
+            
         }
     }
         
@@ -182,13 +200,13 @@ void main (void){
 void setup(void){
     //CONFIGURACION DE PUERTOS
     ANSEL = 0B00000111;               //RA0, RA1, RA2, RA3 ANALOGICO
-    ANSELH = 0X01;
+    ANSELH = 0X02;
     
     TRISA = 0B00001111;          //RA0, RA1, RA2, RA3 INPUT
     TRISC = 0B10000000;          //PORTC COMO OUTPUT, RC7 TX
     TRISD = 0X00;               //PORTD COMO OUTPUT
     TRISE = 0X00;               //PORTE COMO OUTPUT
-    TRISB = 0B11110111;         //RB0, RB1, RB6, RB7 COMO INPUT 
+    TRISB = 0B11111111;         //RB0, RB1, RB6, RB7 COMO INPUT 
     
     PORTA = 0X00;                //LIMPIAMOS EL PUERTOA
     PORTB = 0X00;                //LIMPIAMOS EL PUERTOB
@@ -205,6 +223,13 @@ void setup(void){
     //CONFIGURACION DEL TMR0
     OPTION_REG = 0B01000000;    //RBPU HABILITADO, PSA (0) PRESCALER 1:16
     TMR0 = _tmr0_value;         //TMR0 A 50 us
+  /*  //CONFIGURACION DEL TMR1
+    T1CON	 = 0x11;
+    PIR1bits.TMR1IF = 0;
+    TMR1H	 = 0x3C;
+    TMR1L	 = 0xB0;
+    PIE1bits.TMR1IE = 1;*/
+    
     //CONFIGURACION DEL IOC
     WPUB = 0B11110011;          //WEAK PULL UP ACTIVADO
     IOCB = 0B11110011;          //INTERRUPT ON CHANGE HABILITADO
@@ -254,6 +279,28 @@ void setup(void){
     TXSTAbits.BRGH = 1;
 }
 
+void GUARDAR(unsigned int POT0,unsigned int POT1,unsigned int POT2,unsigned int POT3){
+    switch (SEL_G){
+                case 0:
+                    EEPROM_W(POT0, SERVO1_1);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO1
+                    EEPROM_W(POT1, SERVO2_1);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO2
+                    EEPROM_W(POT2, SERVO3_1);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO3
+                    SEL_G = 1;
+                    break;
+                case 1:
+                    EEPROM_W(POT0, SERVO1_2);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO1
+                    EEPROM_W(POT1, SERVO2_2);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO2
+                    EEPROM_W(POT2, SERVO3_2);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO3
+                    SEL_G = 2;
+                    break;
+                case 2:
+                    EEPROM_W(POT0, SERVO1_3);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO1
+                    EEPROM_W(POT1, SERVO2_3);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO2
+                    EEPROM_W(POT2, SERVO3_3);     //CARGAMOS EL VALOR A LA DIRECCION DE SERVO3
+                    SEL_G = 0;
+                    break;
+            }
+}
 
 void ANALOGICOS(int VALORAN){
      
@@ -266,7 +313,7 @@ void ANALOGICOS(int VALORAN){
             break;
             
         case 1:
-            POT1 = (((0.47*VALORAN)+31));
+            POT1 = (((0.254*VALORAN)+75));
             CCPR1L = POT1;
             ADCON0bits.CHS = 2;   //COLOCAMOS EL CANAL 2 PORTA2
             __delay_us(100);
@@ -274,13 +321,13 @@ void ANALOGICOS(int VALORAN){
             break;
             
         case 2:
-            POT2 = ((0.23*VALORAN)+31);    //(31,120)
+            POT2 = ((0.23*VALORAN)+35);    //(31,120)
             CCPR2L = POT2;
-            ADCON0bits.CHS = 8;   //COLOCAMOS EL CANAL 3 PORTA3
+            ADCON0bits.CHS = 9;   //COLOCAMOS EL CANAL 3 PORTA3
            __delay_us(100);
              ADCON0bits.GO = 1;              //COMIENZA EL CICLO DEL ADC*/
             break;
-        case 8:
+        case 9:
            if (VALORAN >= 52 && VALORAN<=179){    //MAPEO DEL SERVO 3, (5,16)
                POT3 = 12;
            }
@@ -320,4 +367,18 @@ unsigned int EEPROM_R(unsigned int add){
     EECON1bits.RD = 1;          //HABILITAMOS PARA LEER
     unsigned int dato = EEDATA; //CARGAMOS EL VALOR PARA EXTRAERLO
     return dato;
+}
+unsigned char MANDAR (void){
+    switch (POS_TX){
+        case 0:
+            POS_TX = 1;
+            return 0x36;
+            break;
+            
+        case 1:
+            POS_TX = 0;
+            return 0x0A;
+            break;
+            
+    }
 }

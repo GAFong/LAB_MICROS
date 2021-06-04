@@ -17,8 +17,8 @@ class interfaz (QtWidgets.QMainWindow, Ui_MainWindow):
         self.Garra.valueChanged.connect(self.serial_garra)
         self.Brazo1.valueChanged.connect(self.serial_brazo1)
         self.Brazo2.valueChanged.connect(self.serial_brazo2)
-        self.RotD.pressed.connect(self.serial_RotD)
-        self.RotI.pressed.connect(self.serial_RotI)
+        self.BASE.valueChanged.connect(self.serial_base)
+        self.GUARDAR.pressed.connect(self.serial_guardar)
         threading.Thread(daemon=True, target=posiciones).start()
 
     def serial_garra(self):
@@ -39,19 +39,31 @@ class interfaz (QtWidgets.QMainWindow, Ui_MainWindow):
         ser.write(bytes.fromhex('63')) #letra c
         #ser.write(bytes.fromhex('0A')) #enter
         ser.write(bytes.fromhex(hex(ord(str(self.Brazo2.value())))[2:]))
-    def serial_RotD(self):
+    def serial_base(self):
         global ser
         #try:
         ser.write(bytes.fromhex('64')) #letra d
-    def serial_RotI(self):
+        ser.write(bytes.fromhex(hex(ord(str(self.BASE.value())))[2:]))
+
+    def serial_guardar(self):
         global ser
         #try:
         ser.write(bytes.fromhex('65')) #letra e
 
-    def posicion_garra(self, angulo):
-        print(angulo)
-        type(angulo)
+    def escribir(self,servo1,servo2):
+        if (servo1 >= 4):
+            self.label.setText('Servo1 ')
 
+        elif (servo2<= 3):
+            self.label.setText('Servo2 ')
+        else:
+            self.label.setText('Servo1 3')
+
+    def posicion_garra(self, angulo):
+        #print(angulo)
+        type(angulo)
+    def actual(self):
+        self.update()
 
 def posiciones():
     global ventana, ser
@@ -61,6 +73,17 @@ def posiciones():
             time.sleep(.3)
             angulo = ser.readline()
             ventana.posicion_garra(angulo)
+            ser.readline()
+            try:
+                #valorservos = str(ser.readline()).split(',')
+                print(ser.readline())
+                #servo1 = int(valorservos[0][2])
+                #servo2 = int(valorservos[1][0])
+                #ventana.escribir(servo1,servo2)
+                #print(servo1,'\t',servo2)
+            except :
+                pass
+            ventana.actual()
     except:
         print("Error: No esta comunicando")
 

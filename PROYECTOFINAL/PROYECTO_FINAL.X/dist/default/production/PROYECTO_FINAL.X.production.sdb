@@ -21,17 +21,17 @@
 [v _isr isr `II(v  1 e 1 0 ]
 "108
 [v _main main `(v  1 e 1 0 ]
-"189
+"207
 [v _setup setup `(v  1 e 1 0 ]
-"271
+"289
 [v _GUARDAR GUARDAR `(v  1 e 1 0 ]
-"294
+"312
 [v _ANALOGICOS ANALOGICOS `(v  1 e 1 0 ]
-"337
+"357
 [v _EEPROM_W EEPROM_W `(v  1 e 1 0 ]
-"353
+"373
 [v _EEPROM_R EEPROM_R `(ui  1 e 2 0 ]
-"360
+"380
 [v _MANDAR MANDAR `(uc  1 e 1 0 ]
 "59 C:/Program Files (x86)/Microchip/MPLABX/v5.40/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _TMR0 TMR0 `VEuc  1 e 1 @1 ]
@@ -328,48 +328,48 @@
 "108
 [v _main main `(v  1 e 1 0 ]
 {
-"188
+"206
 } 0
-"189
+"207
 [v _setup setup `(v  1 e 1 0 ]
 {
-"269
+"287
 } 0
-"360
+"380
 [v _MANDAR MANDAR `(uc  1 e 1 0 ]
 {
-"391
+"411
 } 0
-"271
+"289
 [v _GUARDAR GUARDAR `(v  1 e 1 0 ]
 {
 [v GUARDAR@POT0 POT0 `ui  1 p 2 4 ]
 [v GUARDAR@POT1 POT1 `ui  1 p 2 6 ]
 [v GUARDAR@POT2 POT2 `ui  1 p 2 8 ]
 [v GUARDAR@POT3 POT3 `ui  1 p 2 10 ]
-"292
+"310
 } 0
-"337
+"357
 [v _EEPROM_W EEPROM_W `(v  1 e 1 0 ]
 {
 [v EEPROM_W@dato dato `ui  1 p 2 0 ]
 [v EEPROM_W@add add `i  1 p 2 2 ]
-"352
+"372
 } 0
-"353
+"373
 [v _EEPROM_R EEPROM_R `(ui  1 e 2 0 ]
 {
-"357
+"377
 [v EEPROM_R@dato dato `ui  1 a 2 4 ]
-"353
+"373
 [v EEPROM_R@add add `ui  1 p 2 0 ]
-"359
+"379
 } 0
-"294
+"312
 [v _ANALOGICOS ANALOGICOS `(v  1 e 1 0 ]
 {
 [v ANALOGICOS@VALORAN VALORAN `i  1 p 2 71 ]
-"335
+"355
 } 0
 "10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -399,17 +399,17 @@
 "8 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S847 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S846 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S852 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S855 . 4 `l 1 i 4 0 `d 1 f 4 0 `S847 1 fAsBytes 4 0 `S852 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S855  1 a 4 34 ]
+[s S851 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S854 . 4 `l 1 i 4 0 `d 1 f 4 0 `S846 1 fAsBytes 4 0 `S851 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S854  1 a 4 34 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 29 ]
-[s S924 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S923 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S927 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S924 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S927  1 a 2 38 ]
+[u S926 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S923 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S926  1 a 2 38 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 33 ]
 "11

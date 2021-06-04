@@ -95,7 +95,7 @@ void __interrupt()isr(void){
     }
    
     if (PIR1bits.RCIF){
-        if (RCREG >= 97 && RCREG <= 101 ){
+        if (RCREG >= 97 && RCREG <= 104 ){
                 SEL = RCREG;  }
         else  {
             DATO = RCREG;
@@ -109,7 +109,7 @@ void main (void){
     setup();  
     while(1){
         while(RB6 == 1 && RB7 ==1){
-            PORTE = 0X01;
+            PORTE = 0X06;
             TXREG = MANDAR();
         ANALOGICOS(VALORAN);    //FUNCION DE VALORES ANALOGICOS
      
@@ -121,7 +121,7 @@ void main (void){
         }
         
         while (RB6 == 0 && RB7 == 1){
-            PORTE = 0X02;
+            PORTE = 0X05;
             
             if (RB4 == 0 && RB5 == 1){
                 POT0 = EEPROM_R(SERVO1_1);
@@ -142,22 +142,22 @@ void main (void){
         }
         
         while (RB6 == 1 && RB7 == 0){
-            PORTE = 0X04;
+            PORTE = 0X03;
              TXREG = MANDAR();
             switch(SEL){
                 case 96:
                     break;
                 case 97:
-                    PORTD = 0X01;
+                    
                     POT0 =(1.1*(DATO-48)+5);
                     break;
                 case 98:
-                    PORTD = 0X02;
+                    
                     POT2 = (6.55*(DATO-48)+31);
                     CCPR2L = POT2;
                     break;
                 case 99:
-                    PORTD = 0X03;
+                    
                     POT1 = (8*(DATO-48)+75);
                     CCPR1L = POT1;
                     break;
@@ -166,12 +166,14 @@ void main (void){
                     PORTD = 0X04;
                     switch (DATO - 48){
                         case 0:
+                            PORTD = 0X02;
                             POT3 = 9;
                             break;
                         case 1:
                             POT3 = 12;
                             break;
                         case 2:
+                            PORTD = 0X01;
                             POT3 = 15;
                             break;            
                     }
@@ -180,7 +182,23 @@ void main (void){
                     GUARDAR(POT0, POT1, POT2, POT3);
                     SEL = 96;
                     break;
+                case 102:
+                    POT0 = EEPROM_R(SERVO1_1);
+                    CCPR1L = EEPROM_R(SERVO2_1);
+                    CCPR2L = EEPROM_R(SERVO3_1);
+                    break;
+                case 103:
+                    POT0 = EEPROM_R(SERVO1_2);
+                    CCPR1L = EEPROM_R(SERVO2_2);
+                    CCPR2L = EEPROM_R(SERVO3_2);
+                    break;
+                case 104:
+                    POT0 = EEPROM_R(SERVO1_3);
+                    CCPR1L = EEPROM_R(SERVO2_3);
+                    CCPR2L = EEPROM_R(SERVO3_3);
+                    break;
                     }
+            
            
         }
     }
@@ -322,9 +340,11 @@ void ANALOGICOS(int VALORAN){
            }
            else if (VALORAN >= 0 && VALORAN<=51){    //MAPEO DEL SERVO 3, (5,16)
                POT3 = 10;
+               PORTD = 0X02;
            }
            else if (VALORAN >= 180 && VALORAN<=255){    //MAPEO DEL SERVO 3, (5,16)
                POT3 = 15;
+               PORTD = 0X01;
            }
          //  POT3 = ((0.0380*VALORAN)+5);    //MAPEO DEL SERVO 3, (5,16)
            ADCON0bits.CHS = 0;   //COLOCAMOS EL CANAL 1 PORTA1
@@ -380,38 +400,6 @@ unsigned char MANDAR (void){
             break;
         case 4:
             POT2A = ((0.1551*POT2)-5.4)+48;
-            POS_TX = 5;
-            return POT2A;
-            break;
-        case 5:
-            POS_TX = 0;
-            return 0x0A;
-            break;    
-    }
-}
-unsigned char MANDAR_UART (void){
-    
-    switch (POS_TX){
-        case 0:
-            POT0A = ((POT0*0.9) - 4.5)+48;
-            POS_TX = 1;
-            return POT0A;
-            break;
-        case 1:
-            POS_TX = 2;
-            return 0x2C;
-            break;
-        case 2:
-            POT1A =((0.12*POT1)-9)+48;
-            POS_TX = 3;
-            return POT1A;
-            break;
-        case 3:
-            POS_TX = 4;
-            return 0x2C;
-            break;
-        case 4:
-            POT2A = ((0.1521*POT2)-4.7)+48;
             POS_TX = 5;
             return POT2A;
             break;

@@ -19,6 +19,9 @@ class interfaz (QtWidgets.QMainWindow, Ui_MainWindow):
         self.Brazo2.valueChanged.connect(self.serial_brazo2)
         self.BASE.valueChanged.connect(self.serial_base)
         self.GUARDAR.pressed.connect(self.serial_guardar)
+        self.VALOR1.pressed.connect(self.serial_valor1)
+        self.VALOR2.pressed.connect(self.serial_valor2)
+        self.VALOR3.pressed.connect(self.serial_valor3)
         threading.Thread(daemon=True, target=posiciones).start()
 
     def serial_garra(self):
@@ -49,6 +52,18 @@ class interfaz (QtWidgets.QMainWindow, Ui_MainWindow):
         global ser
         #try:
         ser.write(bytes.fromhex('65')) #letra e
+    def serial_valor1(self):
+        global ser
+        #try:
+        ser.write(bytes.fromhex('66')) #letra f
+    def serial_valor2(self):
+        global ser
+        #try:
+        ser.write(bytes.fromhex('67')) #letra g
+    def serial_valor3(self):
+        global ser
+        #try:
+        ser.write(bytes.fromhex('68')) #letra h
 
     def escribir(self,servo1,servo2,servo3):
         angulo1 = servo1*20

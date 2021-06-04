@@ -50,18 +50,15 @@ class interfaz (QtWidgets.QMainWindow, Ui_MainWindow):
         #try:
         ser.write(bytes.fromhex('65')) #letra e
 
-    def escribir(self,servo1,servo2):
-        if (servo1 >= 4):
-            self.label.setText('Servo1 ')
+    def escribir(self,servo1,servo2,servo3):
+        angulo1 = servo1*20
+        angulo2 = (servo2*11.11) + 65
+        angulo3 = servo3*10
+        self.labelgarra.setText('Garra {}°'.format(angulo1))
+        self.labelBrazo1.setText('Brazo 1  {}°'.format(angulo2))
+        self.labelBrazo2.setText('Brazo 2  {}°'.format(angulo3))
 
-        elif (servo2<= 3):
-            self.label.setText('Servo2 ')
-        else:
-            self.label.setText('Servo1 3')
 
-    def posicion_garra(self, angulo):
-        #print(angulo)
-        type(angulo)
     def actual(self):
         self.update()
 
@@ -71,16 +68,17 @@ def posiciones():
         while (1):
             ser.flushInput()
             time.sleep(.3)
-            angulo = ser.readline()
-            ventana.posicion_garra(angulo)
+            #angulo = ser.readline()
+            #ventana.posicion_garra(angulo)
             ser.readline()
             try:
-                #valorservos = str(ser.readline()).split(',')
-                print(ser.readline())
-                #servo1 = int(valorservos[0][2])
-                #servo2 = int(valorservos[1][0])
-                #ventana.escribir(servo1,servo2)
-                #print(servo1,'\t',servo2)
+                valorservos = str(ser.readline()).split(',')
+                #print(valorservos)
+                servo1 = int(valorservos[0][2])
+                servo2 = int(valorservos[1][0])
+                servo3 = int(valorservos[2][0])
+                ventana.escribir(servo1,servo2,servo3)
+                print(servo1,'\t',servo2)
             except :
                 pass
             ventana.actual()

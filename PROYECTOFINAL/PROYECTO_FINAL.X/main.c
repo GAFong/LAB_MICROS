@@ -44,6 +44,10 @@ unsigned int POT0 = 0;
 unsigned int POT1 = 0;
 unsigned int POT2 = 0;
 unsigned int POT3 = 0;
+unsigned char POT0A = 0;
+unsigned char POT1A = 0;
+unsigned char POT2A = 0;
+unsigned char POT3A = 0;
 int VALORAN = 0;
 int DATO;
 int RB0_FLAG = 1;
@@ -58,6 +62,7 @@ void EEPROM_W(unsigned int dato, int add);
 unsigned int EEPROM_R(unsigned int add);
 void ANALOGICOS(int VALORAN);
 unsigned char MANDAR (void);
+unsigned char MANDAR_UART (void);
 void GUARDAR(unsigned int POT0,unsigned int POT1,unsigned int POT2,unsigned int POT3);
 
 //---------------------------INTERRUPCION--------------------------------------
@@ -88,17 +93,7 @@ void __interrupt()isr(void){
         VALORAN = ADRESH;               //CARGAMOS ADRESH A VALORAN
         PIR1bits.ADIF = 0;              //LIMPIAMOS LA BANDERA DEL ADC
     }
-   /* if (PIR1bits.TMR1IF == 1){
-        TMR1H	 = 0x3C;
-        TMR1L	 = 0xB0;
-        FLAG_TX = 1;
-        TXREG = MANDAR();
-        PIR1bits.TMR1IF =0;
-    }*/
-   /* if (PIR1bits.TXIF == 1){
-        TXREG = MANDAR();
-        PIE1bits.TXIE = 0;
-    }*/
+   
     if (PIR1bits.RCIF){
         if (RCREG >= 97 && RCREG <= 101 ){
                 SEL = RCREG;  }
@@ -115,13 +110,9 @@ void main (void){
     while(1){
         while(RB6 == 1 && RB7 ==1){
             PORTE = 0X01;
-       
+            TXREG = MANDAR();
         ANALOGICOS(VALORAN);    //FUNCION DE VALORES ANALOGICOS
-     /*   if (FLAG_TX == 1){
-            PIE1bits.TXIE = 1;
-            FLAG_TX = 0;
-        }*/
-       // PIE1bits.TXIE = 1;
+     
         if (RB0 == 1 && RB0_FLAG == 0){//HASTA DEJAR DE SER PRESIONADO
             GUARDAR(POT0, POT1, POT2, POT3);
         }
@@ -152,8 +143,7 @@ void main (void){
         
         while (RB6 == 1 && RB7 == 0){
             PORTE = 0X04;
-            //POT3 = 12;
-            
+             TXREG = MANDAR();
             switch(SEL){
                 case 96:
                     break;
@@ -172,9 +162,8 @@ void main (void){
                     CCPR1L = POT1;
                     break;
                 case 100:
-                   // POT3 = 15;
+                   
                     PORTD = 0X04;
-                
                     switch (DATO - 48){
                         case 0:
                             POT3 = 9;
@@ -192,7 +181,7 @@ void main (void){
                     SEL = 96;
                     break;
                     }
-            
+           
         }
     }
         
@@ -369,16 +358,66 @@ unsigned int EEPROM_R(unsigned int add){
     return dato;
 }
 unsigned char MANDAR (void){
+    
     switch (POS_TX){
         case 0:
+            POT0A = ((0.8181*POT0)-4.09)+48;
             POS_TX = 1;
-            return 0x36;
+            return POT0A;
             break;
-            
         case 1:
+            POS_TX = 2;
+            return 0x2C;
+            break;
+        case 2:
+            POT1A =((0.1385*POT1)-10.4)+49;
+            POS_TX = 3;
+            return POT1A;
+            break;
+        case 3:
+            POS_TX = 4;
+            return 0x2C;
+            break;
+        case 4:
+            POT2A = ((0.1551*POT2)-5.4)+48;
+            POS_TX = 5;
+            return POT2A;
+            break;
+        case 5:
             POS_TX = 0;
             return 0x0A;
+            break;    
+    }
+}
+unsigned char MANDAR_UART (void){
+    
+    switch (POS_TX){
+        case 0:
+            POT0A = ((POT0*0.9) - 4.5)+48;
+            POS_TX = 1;
+            return POT0A;
             break;
-            
+        case 1:
+            POS_TX = 2;
+            return 0x2C;
+            break;
+        case 2:
+            POT1A =((0.12*POT1)-9)+48;
+            POS_TX = 3;
+            return POT1A;
+            break;
+        case 3:
+            POS_TX = 4;
+            return 0x2C;
+            break;
+        case 4:
+            POT2A = ((0.1521*POT2)-4.7)+48;
+            POS_TX = 5;
+            return POT2A;
+            break;
+        case 5:
+            POS_TX = 0;
+            return 0x0A;
+            break;    
     }
 }

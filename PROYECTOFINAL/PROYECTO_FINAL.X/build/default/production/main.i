@@ -2712,6 +2712,10 @@ unsigned int POT0 = 0;
 unsigned int POT1 = 0;
 unsigned int POT2 = 0;
 unsigned int POT3 = 0;
+unsigned char POT0A = 0;
+unsigned char POT1A = 0;
+unsigned char POT2A = 0;
+unsigned char POT3A = 0;
 int VALORAN = 0;
 int DATO;
 int RB0_FLAG = 1;
@@ -2726,6 +2730,7 @@ void EEPROM_W(unsigned int dato, int add);
 unsigned int EEPROM_R(unsigned int add);
 void ANALOGICOS(int VALORAN);
 unsigned char MANDAR (void);
+unsigned char MANDAR_UART (void);
 void GUARDAR(unsigned int POT0,unsigned int POT1,unsigned int POT2,unsigned int POT3);
 
 
@@ -2756,7 +2761,7 @@ void __attribute__((picinterrupt((""))))isr(void){
         VALORAN = ADRESH;
         PIR1bits.ADIF = 0;
     }
-# 102 "main.c"
+
     if (PIR1bits.RCIF){
         if (RCREG >= 97 && RCREG <= 101 ){
                 SEL = RCREG; }
@@ -2773,12 +2778,8 @@ void main (void){
     while(1){
         while(RB6 == 1 && RB7 ==1){
             PORTE = 0X01;
-
+            TXREG = MANDAR();
         ANALOGICOS(VALORAN);
-
-
-
-
 
         if (RB0 == 1 && RB0_FLAG == 0){
             GUARDAR(POT0, POT1, POT2, POT3);
@@ -2810,8 +2811,7 @@ void main (void){
 
         while (RB6 == 1 && RB7 == 0){
             PORTE = 0X04;
-
-
+             TXREG = MANDAR();
             switch(SEL){
                 case 96:
                     break;
@@ -2832,7 +2832,6 @@ void main (void){
                 case 100:
 
                     PORTD = 0X04;
-
                     switch (DATO - 48){
                         case 0:
                             POT3 = 9;
@@ -2881,7 +2880,7 @@ void setup(void){
 
     OPTION_REG = 0B01000000;
     TMR0 = 206;
-# 234 "main.c"
+# 223 "main.c"
     WPUB = 0B11110011;
     IOCB = 0B11110011;
 
@@ -3020,16 +3019,66 @@ unsigned int EEPROM_R(unsigned int add){
     return dato;
 }
 unsigned char MANDAR (void){
+
     switch (POS_TX){
         case 0:
+            POT0A = ((0.8181*POT0)-4.09)+48;
             POS_TX = 1;
-            return 0x36;
+            return POT0A;
             break;
-
         case 1:
+            POS_TX = 2;
+            return 0x2C;
+            break;
+        case 2:
+            POT1A =((0.1385*POT1)-10.4)+49;
+            POS_TX = 3;
+            return POT1A;
+            break;
+        case 3:
+            POS_TX = 4;
+            return 0x2C;
+            break;
+        case 4:
+            POT2A = ((0.1551*POT2)-5.4)+48;
+            POS_TX = 5;
+            return POT2A;
+            break;
+        case 5:
             POS_TX = 0;
             return 0x0A;
             break;
+    }
+}
+unsigned char MANDAR_UART (void){
 
+    switch (POS_TX){
+        case 0:
+            POT0A = ((POT0*0.9) - 4.5)+48;
+            POS_TX = 1;
+            return POT0A;
+            break;
+        case 1:
+            POS_TX = 2;
+            return 0x2C;
+            break;
+        case 2:
+            POT1A =((0.12*POT1)-9)+48;
+            POS_TX = 3;
+            return POT1A;
+            break;
+        case 3:
+            POS_TX = 4;
+            return 0x2C;
+            break;
+        case 4:
+            POT2A = ((0.1521*POT2)-4.7)+48;
+            POS_TX = 5;
+            return POT2A;
+            break;
+        case 5:
+            POS_TX = 0;
+            return 0x0A;
+            break;
     }
 }
